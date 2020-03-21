@@ -1,3 +1,8 @@
+# places_alloverse_com
+A web site where user accounts can be created and managed, and from those accounts, places can be created and managed. Landing page for when opening the app without an URL.
+
+---
+
 # PlacesAlloverseCom
 
 To start your Phoenix server:
@@ -18,3 +23,4 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
