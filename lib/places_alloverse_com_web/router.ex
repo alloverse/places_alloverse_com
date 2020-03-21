@@ -17,6 +17,7 @@ defmodule PlacesAlloverseComWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/place", PlaceController, :index
   end
 
   # Other scopes may use custom stacks.
