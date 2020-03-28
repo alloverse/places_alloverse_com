@@ -18,6 +18,8 @@ defmodule PlacesAlloverseComWeb.Router do
 
     get "/", PageController, :index
     get "/place", PlaceController, :index
+    get "/place/:id", PlaceController, :show
+
   end
 
   # Other scopes may use custom stacks.
