@@ -1,0 +1,4 @@
+<div class="phx-hero">
+  <h2>Login!</h2>
+    <h3><%= link("Forgot password", to: "/forgot-password") %></h3>
+</div>

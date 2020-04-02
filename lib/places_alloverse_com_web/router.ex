@@ -18,6 +18,9 @@ defmodule PlacesAlloverseComWeb.Router do
 
     get "/", PageController, :index
     resources "/place", PlaceController
+    resources "/user", UserController, only: [:show, :edit, :new]
+    get "/login", UserController, :login
+    get "/forgot-password", UserController, :forgot_password
 
   end
 

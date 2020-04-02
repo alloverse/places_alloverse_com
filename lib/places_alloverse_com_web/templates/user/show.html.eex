@@ -1,0 +1,4 @@
+<div class="phx-hero">
+  <h2>This is user: <%= @id %>!</h2>
+   <h3><%= link("Edit user", to: "/user/43/edit")%></h3>
+</div>

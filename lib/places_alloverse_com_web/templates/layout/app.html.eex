@@ -9,7 +9,10 @@
   </head>
   <body>
     <header>
-    <h1>Alloverse places</h1>
+    <h1><%= link("Alloverse places", to: "/")%></h1>
+    <%= link("Login", to: "/login")%>,
+    <%= link("Sign up", to: "/user/new")%>,
+    <%= link("Go to profile", to: "/user/42")%>
     </header>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
