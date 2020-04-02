@@ -17,8 +17,7 @@ defmodule PlacesAlloverseComWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "/place", PlaceController, :index
-    get "/place/:id", PlaceController, :show
+    resources "/place", PlaceController
 
   end
 
