@@ -1,3 +1,8 @@
 <div class="phx-hero">
   <h2>Places lives here</h2>
+  <h3>Visit a place  <%= link("Place 42", to: "/place/42")%></h3>
+  <h3>Create a place  <%= link("Create a new place", to: "/place/new")%></h3>
+  <h3>Edit a place  <%= link("Edit place 42", to: "/place/42/edit")%></h3>
+
+
 </div>
