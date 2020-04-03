@@ -16,6 +16,10 @@ import "phoenix_html"
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 
-import greet from "./hello";
+import React from "react";
+import ReactDOM from "react-dom";
 
-document.querySelector("header h1").innerHTML = greet("Phoenix");
+import Greeter from "./greeter";
+
+const greeting = document.getElementById("greeting");
+ReactDOM.render(<Greeter name="Phoenix" />, greeting);
