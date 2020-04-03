@@ -1,7 +1,7 @@
 // We need to import the CSS so that webpack will load it.
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
-import css from "../css/app.css"
+const _css = require("../css/app.css");
 
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
@@ -15,3 +15,7 @@ import "phoenix_html"
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
+
+import greet from "./hello";
+
+document.querySelector("header h1").innerHTML = greet("Phoenix");
