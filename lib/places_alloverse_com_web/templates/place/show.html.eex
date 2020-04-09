@@ -1,3 +1,28 @@
-<div class="phx-hero">
-  <h2>This is a place, place: <%= @id %>!</h2>
+
+<!-- Place details -->
+
+<div class="card">
+  <div class="place-preview">
+    <div class="column-left">
+      <div class="column-container">
+        <h2>Title of place <%= @id %></h2>
+        <h4>
+          Created by <a href="#">Nevyn</a> · 24 current guests
+        </h4>
+        <p>
+          An arcade symbolizes fun and affordable carefree times for
+          all visitors where young and young-minded alike can enjoy a
+          test of skill against a machine. If you thrive on gaming and
+          providing a form of ageless entertainment, this is the place
+          for you!
+        </p>
+
+        <div class="button-container-vertical">
+          <div class="button large">Edit</div>
+          <div class="button large primary">Join</div>
+        </div>
+      </div>
+    </div>
+    <div class="column-right"></div>
+  </div>
 </div>

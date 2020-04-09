@@ -1,0 +1,45 @@
+.button {
+  background: $alloteal-light-color;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 24px;
+  cursor: pointer;
+  padding: 12px 24px;
+
+  transition: all ease-in-out 0.15s;
+
+  position: relative;
+
+  &:hover {
+    background: #336f79;
+  }
+
+  &.primary {
+    background: #e66c48;
+    &:hover {
+      background: #c04c2a;
+    }
+  }
+
+  &.large {
+    font-size: 16px;
+  }
+
+  &.logged-in {
+    padding-left: 52px;
+    img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  // &.full-width {
+  //   width: 100%;
+  // }
+}

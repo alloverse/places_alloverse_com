@@ -1,9 +1,65 @@
-<div class="phx-hero">
-  <h2>Places lives here</h2>
-  <h3>Visit a place  <%= link("Place 42", to: "/place/42")%></h3>
-  <h3>Create a place  <%= link("Create a new place", to: "/place/new")%></h3>
-  <h3>Edit a place  <%= link("Edit place 42", to: "/place/42/edit")%></h3>
+ <%# {!isLoggedIn && ( %>
+  <div class="welcome-text animated fadeInDown">
+    <h3>Welcome!</h3>
+    <p>
+      Here, you’ll find places hosted by Alloverse’s own servers. If
+      you’re tech savvy, you can also create and host your own server by
+      following the instructions <a href="#">here</a>.
+      <br /><br />
+      <h3>Visit a place  <%= link("Place 42", to: "/place/42")%></h3>
+      <h3>Create a place  <%= link("Create a new place", to: "/place/new")%></h3>
+      <h3>Edit a place  <%= link("Edit place 42", to: "/place/42/edit")%></h3>
+    </p>
+  </div>
+<%# )} %>
 
-  <div id="greeting"></div>
 
+<div className="content-wrapper">
+  <div className="column left">
+    <div className="room-list recommended">
+      <div
+        className="room-list__title"
+      >
+        Recommended
+      </div>
+      <Card
+        title="Tip Top Treehouse"
+        subtitle="Created by Elli"
+        colorHex="#33C842"
+      />
+
+      <Card
+        title="Palace Arcade"
+        subtitle="Created by Nevyn"
+        colorHex="#c833aa"
+      />
+    </div>
+
+    <div className="room-list public">
+      <div className="room-list__title">Public</div>
+      <Card
+        title="Classroom"
+        subtitle="Created by Emma"
+        colorHex="#C83335"
+      />
+
+      <Card
+        title="Parisian Café"
+        subtitle="Created by Tobi"
+        colorHex="#337EC8"
+      />
+    </div>
+  </div>
+  <div className="column right">
+    <div className="room-list myplaces">
+      <div className="room-list__title">My Places</div>
+      <Card
+        title="Classroom"
+        subtitle="Created by Emma"
+        colorHex="#C83335"
+      />
+
+      {isLoggedIn ? <CreatePlaceCard /> : <CreateAccountCard />}
+    </div>
+  </div>
 </div>
