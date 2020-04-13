@@ -1,4 +1,5 @@
 .button {
+  display: block;
   background: $alloteal-light-color;
   color: #fff;
   text-transform: uppercase;
@@ -18,9 +19,9 @@
   }
 
   &.primary {
-    background: #e66c48;
+    background: $allored-color;
     &:hover {
-      background: #c04c2a;
+      background: $allored-dark-color
     }
   }
 
@@ -38,8 +39,4 @@
       border-radius: 50%;
     }
   }
-
-  // &.full-width {
-  //   width: 100%;
-  // }
 }

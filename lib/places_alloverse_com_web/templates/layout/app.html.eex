@@ -18,42 +18,39 @@
     <div class="wrapper">
       <div class="main-container">
         <div class="header">
-          <div class="title">
-            
-            <img src="<%= Routes.static_path(@conn, "/images/alloverse-logo.png") %>" class="logo" />
-            <span>
-              Alloverse <strong>Places</strong>
-              <%= link("Alloverse places", to: "/")%>
-            </span>
-          </div>
 
-          <%# {isLoggedIn ? ( %>
-            <div class="buttons">
-              <div class="test-button logged-in">
+          <%= link to: "/", class: "header__title" do %>
+            <img src="<%= Routes.static_path(@conn, "/images/alloverse-logo.png") %>" class="header__title__logo" />
+            <span>
+              Alloverse <strong>Places</strong>    
+            </span>
+          <% end %>
+
+          <%# TODO: replace "true" in the conditional with "if user is logged in" %>
+          <%= if true do %>
+            <div class="header__buttons">
+              <div class="button logged-in">
                 <img src="<%= Routes.static_path(@conn, "/images/user-picture.jpg") %>" />
                 Toby Fox
               </div>
             </div>
-          <%# ) : (
-            <div class="buttons">
+            <% else %>
+            <div class="header__buttons">
               <div class="button">Create account</div>
               <div class="button" onClick={() => setIsLoggedIn(true)}>
                 Log in
               </div>
             </div>
-          )} %>
+          <% end %>
         </div>
-
-
-      <%#= link("Login", to: "/login")%>
-      <%#= link("Sign up", to: "/user/new")%>
-      <%#= link("Go to profile", to: "/user/42")%>
       
-    
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <%= render @view_module, @view_template, assigns %>
+        <%# TODO: replace "false" in the conditional with "if an info/error message is available" %>
+        <%= if false do %>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <% end %>
 
+        <%= render @view_module, @view_template, assigns %>
     
       </div>
     </div>

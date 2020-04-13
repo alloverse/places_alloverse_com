@@ -5,7 +5,7 @@
   <div class="place-preview">
     <div class="column-left">
       <div class="column-container">
-        <h2>Title of place <%= @id %></h2>
+        <h2>Place <%= @id %></h2>
         <h4>
           Created by <a href="#">Nevyn</a> · 24 current guests
         </h4>
@@ -18,7 +18,8 @@
         </p>
 
         <div class="button-container-vertical">
-          <div class="button large">Edit</div>
+          <%= link("Edit", to: "/place/42/edit", class: "button large")%>
+
           <div class="button large primary">Join</div>
         </div>
       </div>

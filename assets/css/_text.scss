@@ -17,9 +17,9 @@ p {
 }
 
 a {
-  font-weight: bold;
+  //font-weight: bold;
   text-decoration: none;
-  color: #336f79;
+  color: $alloteal-color;
 
   &:hover {
     text-decoration: underline;

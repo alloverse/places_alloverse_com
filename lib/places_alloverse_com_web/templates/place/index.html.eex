@@ -1,65 +1,74 @@
  <%# {!isLoggedIn && ( %>
-  <div class="welcome-text animated fadeInDown">
-    <h3>Welcome!</h3>
+  <div class="card welcome-text animated fadeInDown">
+    <h3>Welcome to Alloverse Places!</h3>
     <p>
       Here, you’ll find places hosted by Alloverse’s own servers. If
       you’re tech savvy, you can also create and host your own server by
       following the instructions <a href="#">here</a>.
-      <br /><br />
-      <h3>Visit a place  <%= link("Place 42", to: "/place/42")%></h3>
-      <h3>Create a place  <%= link("Create a new place", to: "/place/new")%></h3>
-      <h3>Edit a place  <%= link("Edit place 42", to: "/place/42/edit")%></h3>
     </p>
   </div>
 <%# )} %>
 
 
-<div className="content-wrapper">
-  <div className="column left">
-    <div className="room-list recommended">
-      <div
-        className="room-list__title"
-      >
+<div class="content-wrapper">
+  <div class="column left">
+    <div class="room-list recommended">
+      <div class="room-list__title">
         Recommended
       </div>
-      <Card
-        title="Tip Top Treehouse"
-        subtitle="Created by Elli"
-        colorHex="#33C842"
-      />
 
-      <Card
-        title="Palace Arcade"
-        subtitle="Created by Nevyn"
-        colorHex="#c833aa"
-      />
+      <%= link to: "/place/42", class: "card" do %>
+        <div class="title">Place 42</div>
+        <div class="subtitle">Created by Nevyn</div>
+      <% end %>
+
+      <%= link to: "/place/42", class: "card" do %>
+        <div class="title">Place 42</div>
+        <div class="subtitle">Created by Nevyn</div>
+      <% end %>
+
     </div>
 
-    <div className="room-list public">
-      <div className="room-list__title">Public</div>
-      <Card
-        title="Classroom"
-        subtitle="Created by Emma"
-        colorHex="#C83335"
-      />
+    <div class="room-list public">
+      <div class="room-list__title">Public</div>
 
-      <Card
-        title="Parisian Café"
-        subtitle="Created by Tobi"
-        colorHex="#337EC8"
-      />
+      <%= link to: "/place/42", class: "card" do %>
+        <div class="title">Place 42</div>
+        <div class="subtitle">Created by Nevyn</div>
+      <% end %>
+
+      <%= link to: "/place/42", class: "card" do %>
+        <div class="title">Place 42</div>
+        <div class="subtitle">Created by Nevyn</div>
+      <% end %>
+
     </div>
   </div>
-  <div className="column right">
-    <div className="room-list myplaces">
-      <div className="room-list__title">My Places</div>
-      <Card
-        title="Classroom"
-        subtitle="Created by Emma"
-        colorHex="#C83335"
-      />
+  <div class="column right">
+    <div class="room-list myplaces">
+      <div class="room-list__title">My Places</div>
+      
+      <%= link to: "/place/42", class: "card", style: "border-color: #33C842" do %>
+        <div class="title">Place 42</div>
+        <div class="subtitle">Created by Elli</div>
+      <% end %>
 
-      {isLoggedIn ? <CreatePlaceCard /> : <CreateAccountCard />}
+      
+      <%# if isLoggedIn { %>
+      <%= link to: "/place/new", class: "card create-place" do %>
+        <div class="title">Create new Place</div>
+        <div class="subtitle">Have it your way</div>
+      <% end %>
+
+      <%# } else { %>
+      <%= link to: "/place/new", class: "card create-account" do %>
+        <div class="title">Create an account</div>
+        <div class="subtitle">Start making your own place</div>
+      <% end %>
+      <%# } %>
+
+
+      
     </div>
   </div>
 </div>

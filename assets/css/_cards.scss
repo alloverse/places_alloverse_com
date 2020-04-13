@@ -1,0 +1,51 @@
+.card {
+  display: block;
+  background: #fff;
+  box-shadow: 0 0 24px $shadow-color;
+  padding: 24px;
+  margin: 0 0 12px 0;
+  border-left: 6px solid $alloteal-light-color;
+  
+  // Makes sure .card that are also an <a> element behaves differently than non-interactive cards
+  @at-root {
+    a#{&} {
+      cursor: pointer;
+      transition: border-left-width ease-in-out 0.15s;
+
+      &:hover {
+        border-left-width: 12px;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #85a9af;
+  }
+
+  &.create-place {
+    background: $alloteal-light-color;
+    border-left-color: $alloteal-dark-color;
+
+    .title,
+    .subtitle {
+      color: #fff;
+    }
+  }
+
+  &.create-account {
+    background: $allored-color;
+    border-left-color: $allored-dark-color;
+
+    .title,
+    .subtitle {
+      color: #fff;
+    }
+  }
+}
