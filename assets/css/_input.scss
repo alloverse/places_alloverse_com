@@ -1,0 +1,17 @@
+
+input[type=text],textarea {
+
+  width: 100%;
+  max-width: 100%;
+
+  border: 1px solid $alloteal-superlight-color;
+  background: $alloteal-background-color;
+  
+
+  font-size: 16px;
+  padding: 12px;
+}
+
+textarea {
+  min-height: 120px;
+}

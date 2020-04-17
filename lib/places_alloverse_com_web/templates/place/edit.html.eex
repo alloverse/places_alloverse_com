@@ -1,5 +1,30 @@
-<!-- Edit and Create -->
+<div class="card">
+  <div class="place-preview edit-place">
+    <div class="column-left">
+      <div class="column-container">
+        
+        <h2>
+          <%# if isEdit { %>
+          <%# Edit Place <%= @id %>
+          <%# } else { %>
+          Create a new Place
+          <%# } %>
+        </h2>
 
-<div class="phx-hero">
-  <h2>Edit a place!</h2>
+        <input type="text" placeholder="Place name here"  value="<%# placeName { %>"/>
+        <h4>unique_id.places.alloverse.com</h4>
+
+        <textarea placeholder="Short description of the place here" ></textarea>
+
+        
+        <input type="checkbox" id="steve">
+        <label for="steve">Make this place public</label>
+
+        <div class="button-container-vertical">
+          <%= link("Save", to: "/place/42/edit", class: "button large")%>
+        </div>
+      </div>
+    </div>
+    <div class="column-right"></div>
+  </div>
 </div>

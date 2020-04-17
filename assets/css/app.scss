@@ -1,14 +1,13 @@
-/* This file is for your main application css. */
-
-// @import "./phoenix.css";
 
 /* @import "../node_modules/animate.css"; */
 
+@import "./normalize.css";
 
 @import "variables";
 @import "text";
 @import "buttons";
 @import "cards";
+@import "input";
 
 
 /* TODO: Move everything from this generic styles file into other, more relevant sections */

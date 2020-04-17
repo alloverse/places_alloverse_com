@@ -119,9 +119,17 @@ body {
   .column-right {
     flex: 1 0 50%;
 
-    // Temporary arcade image
+  // Temporary arcade image
     background: #f6f6f6
       url(https://i.pinimg.com/originals/46/87/78/4687787db37170de8aebb754bc88e0f7.jpg)
       no-repeat center / cover;
+  }
+
+  &.edit-place {
+    .column-right {
+      background: #fff
+      url("/images/magic-768x801.png")
+      no-repeat center / 80%;
+    }
   }
 }
