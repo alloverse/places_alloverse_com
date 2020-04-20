@@ -1,8 +1,11 @@
 h2 {
-  font-size: 20px;
+  //@extend: 20px;
   line-height: 32px;
   margin: 0;
-  margin-bottom: 12px;
+  margin-bottom: 3px;
+
+  font-size: 26px;
+    font-weight: 600;
 }
 
 h4 {
@@ -13,8 +16,8 @@ h4 {
 }
 
 p {
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 17px;
+  line-height: 24px;
 }
 
 a {
