@@ -61,7 +61,7 @@
       <% end %>
 
       <%# } else { %>
-      <%= link to: "/place/new", class: "card create-account" do %>
+      <%= link to: "/user/new", class: "card create-account" do %>
         <div class="title">Create an account</div>
         <div class="subtitle">Start making your own place</div>
       <% end %>

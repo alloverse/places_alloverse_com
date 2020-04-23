@@ -60,7 +60,7 @@ body {
 
 .welcome-text {
   margin-bottom: 64px;
-  color: #336f79;
+  color: $alloteal-color;
   font-size: 16px;
   line-height: 22px;
 }
@@ -86,7 +86,7 @@ body {
         margin-bottom: 24px;
         font-size: 14px;
         text-transform: uppercase;
-        font-weight: 700;
+        font-weight: $av-font-weight-bold;
       }
     }
   }

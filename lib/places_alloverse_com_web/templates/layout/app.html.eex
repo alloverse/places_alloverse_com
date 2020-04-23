@@ -27,7 +27,7 @@
           <% end %>
 
           <%# TODO: replace "true" in the conditional with "if user is logged in" %>
-          <%= if true do %>
+          <%= if false do %>
             <div class="header__buttons">
               <div class="button logged-in">
                 <img src="<%= Routes.static_path(@conn, "/images/user-picture.jpg") %>" />
@@ -36,10 +36,8 @@
             </div>
             <% else %>
             <div class="header__buttons">
-              <div class="button">Create account</div>
-              <div class="button" onClick={() => setIsLoggedIn(true)}>
-                Log in
-              </div>
+              <%= link("Create Account", to: "/user/42/edit/", class: "button")%>
+              <%= link("Log In", to: "/login/", class: "button")%>
             </div>
           <% end %>
         </div>

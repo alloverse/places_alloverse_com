@@ -7,7 +7,7 @@
       <div class="column-container">
         <h2>Place <%= @id %></h2>
         <h4>
-          Created by <a href="#">Nevyn</a> · 24 current guests
+          Created by <%= link("Nevyn", to: "/user/42")%> · 24 current guests
         </h4>
         <p>
           An arcade symbolizes fun and affordable carefree times for

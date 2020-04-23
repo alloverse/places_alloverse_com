@@ -1,3 +1,12 @@
-<div class="phx-hero">
-  <h2>Edit a user!</h2>
+<div class="card">
+  <h2>Create or edit account</h2>
+
+  <div class="form-container">
+    <input type="text" placeholder="Username" />
+    <input type="text" placeholder="Email" />
+    <input type="password" placeholder="Password" />
+
+    <div class="button">Join Alloverse</div>
+  </div>
+
 </div>

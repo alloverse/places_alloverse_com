@@ -3,25 +3,26 @@
     <div class="column-left">
       <div class="column-container">
         
-        <h2>
-          <%# if isEdit { %>
-          <%# Edit Place <%= @id %>
-          <%# } else { %>
-          Create a new Place
-          <%# } %>
-        </h2>
+        <h2>Create or Edit Place</h2>
 
-        <input type="text" placeholder="Place name here"  value="<%# placeName { %>"/>
-        <h4>unique_id.places.alloverse.com</h4>
 
-        <textarea placeholder="Short description of the place here" ></textarea>
+        <div class="form-container">
 
-        
-        <input type="checkbox" id="steve">
-        <label for="steve">Make this place public</label>
+          <input type="text" placeholder="Place name here"  value="<%# placeName { %>"/>
+          
+          <div style="font-size: 14px; padding-left: 13px; color:#B4C6D4;">unique_id.places.alloverse.com</div>
 
-        <div class="button-container-vertical">
-          <%= link("Save", to: "/place/42/edit", class: "button large")%>
+          <textarea placeholder="Short description of the place here" ></textarea>
+
+          
+          
+          <label for="steve" style="display: inline-block; font-size: 14px;">
+            <input type="checkbox" id="steve">&nbsp;&nbsp;&nbsp;Make this place public
+          </label>
+
+          <div class="button-container-vertical">
+            <%= link("Save", to: "/place/42/edit", class: "button large")%>
+          </div>
         </div>
       </div>
     </div>
