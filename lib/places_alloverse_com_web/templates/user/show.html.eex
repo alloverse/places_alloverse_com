@@ -1,6 +1,6 @@
 
 <div class="card">
-  <h2>User page for<%= @id %>!</h2>
+  <h2>Account/User page for<%= @id %>!</h2>
 
   <ul>
     <li><%= link("Edit profile", to: "/user/43/edit")%></li>

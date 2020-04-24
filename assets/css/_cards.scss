@@ -2,12 +2,12 @@
   display: block;
   background: #fff;
   
-  box-shadow: 0 1px 2px $shadow-color, 
-              0 2px 4px $shadow-color, 
-              0 4px 8px $shadow-color, 
-              0 8px 16px $shadow-color,
-              0 16px 32px $shadow-color, 
-              0 32px 64px $shadow-color;
+  box-shadow: 0 1px 2px $av-color-card-shadow, 
+              0 2px 4px $av-color-card-shadow, 
+              0 4px 8px $av-color-card-shadow, 
+              0 8px 16px $av-color-card-shadow,
+              0 16px 32px $av-color-card-shadow, 
+              0 32px 64px $av-color-card-shadow;
   padding: 32px;
 
   margin: 0 0 18px 0;
@@ -19,14 +19,11 @@
     a#{&} {
       border-radius: $av-border-radius;
       cursor: pointer;
-      
       border-width: 0px;
       border-style: solid;
 
       &:hover {  
-        // padding: 29px 45px;
         padding: 29px;
-      
         border-width: $card-highlight-border-width;
         text-decoration: none;
       }
@@ -46,8 +43,8 @@
   }
 
   &.create-place {
-    background: $alloteal-light-color;
-    border-color: $alloteal-dark-color;
+    background: $av-color-teal-light;
+    border-color: $av-color-teal-dark;
 
     .title,
     .subtitle {
@@ -56,8 +53,8 @@
   }
 
   &.create-account {
-    background: $allored-color;
-    border-color: $allored-dark-color;
+    background: $av-color-orange;
+    border-color: $av-color-orange-dark;
 
     .title,
     .subtitle {

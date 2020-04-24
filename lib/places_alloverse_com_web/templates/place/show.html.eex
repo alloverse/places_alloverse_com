@@ -1,9 +1,6 @@
-
-<!-- Place details -->
-
 <div class="card">
-  <div class="place-preview">
-    <div class="column-left">
+  <div class="card-column-container">
+    <div class="card-column-container__column-left">
       <div class="column-container">
         <h2>Place <%= @id %></h2>
         <h4>
@@ -24,6 +21,8 @@
         </div>
       </div>
     </div>
-    <div class="column-right"></div>
+    <div class="card-column-container__column-right">
+      <img src="https://i.pinimg.com/originals/46/87/78/4687787db37170de8aebb754bc88e0f7.jpg" />
+    </div>
   </div>
 </div>

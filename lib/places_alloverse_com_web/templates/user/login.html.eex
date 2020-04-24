@@ -1,12 +1,18 @@
 <div class="card">
-  <h2>Log in</h2>
+  <div class="card-column-container">
+    <div class="card-column-container__column-left">
+      <h2>Log in</h2>
 
-  <div class="form-container">
-    <input type="text" placeholder="Email" />
-    <input type="password" placeholder="Password" />
-    <div class="button">Log In</div>
+      <div class="form-container">
+        <input type="text" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <div class="button">Log In</div>
 
-    <div><%= link("Forgot your password?", to: "/forgot-password") %></div>
-  </div>
+        <div><%= link("Forgot your password?", to: "/forgot-password") %></div>
+      </div>
+    </div>
+
+    <div class="card-column-container__column-right">
+    </div>
   
 </div>

@@ -1,31 +1,43 @@
-$allored-color: #e66c48;
-$allored-dark-color: #c04c2a;
 
-$alloteal-color: #336f79;
-$alloteal-dark-color: #4d777e;
-$alloteal-light-color: #64939e;
-$alloteal-superlight-color: #B4C6D4;
-$alloteal-background-color: rgba(180,198,212,0.1);
+/* Standard colors */
 
-$shadow-color: rgba(51, 111, 121, 0.07);
+$av-color-teal: #336f79;
+$av-color-teal-dark: #4d777e;
+$av-color-teal-light: #64939e;
+$av-color-teal-superlight: #B4C6D4;
+
+$av-color-orange: #e66c48;
+$av-color-orange-dark: #c04c2a;
+
+$av-color-error: #f66;
+$av-color-warning: #fc6;
+
+$av-color-card-shadow: rgba(51, 111, 121, 0.07);
+$av-color-input-background: rgba(180, 198, 212, 0.1);
 
 
-
-$av-border-radius: 12px;
-
-$av-standard-animation: all ease-in-out 0.15s;
-
+/* Standard border width for highlighted cards */
+/* TODO: Use this value to calculate the padding the highlight replaces. Currently, that padding is magic numbers */
 $card-highlight-border-width: 3px;
 
 
+/* Border radii */
+$av-border-radius: 12px;
+
+
+/* Font sizes */
 $av-font-size-base: 17px;
 $av-font-size-small: 14px;
+$av-font-size-large: 22px;
 
 
+/* Font weights */
 $av-font-weight-normal: 400;
 $av-font-weight-bold: 600;
 
 
+/* Standard padding & margins */
+$av-padding-base: 12px;
 
-$av-color-error: #f66;
-$av-color-warning: #fc6;
+/* Standard animation specification */
+$av-standard-animation: all ease-in-out 0.15s;

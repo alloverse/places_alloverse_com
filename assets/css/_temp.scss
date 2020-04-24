@@ -1,14 +1,12 @@
 body {
   margin: 0;
-  // width: 100%;
   height: 100vh;
   
-  background: #c9eaef url("/images/places-bg@2x.jpg") no-repeat top; //FFF7E9
+  background: #c9eaef url("/images/places-bg@2x.jpg") no-repeat top;
   background-attachment: fixed;
-
   background-size: cover;
 
-  color: $alloteal-color;
+  color: $av-color-teal;
   font-family: "Lato", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
 }
@@ -38,14 +36,13 @@ body {
   margin-bottom: 64px;
 
   &__title {
-    //font-family: "Lato", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 30px;
     display: flex;
     align-items: center;
 
     &__logo {
       height: 48px;
-      margin-right: 12px;
+      margin-right: $av-padding-base;
     }
   }
 
@@ -53,16 +50,9 @@ body {
     display: flex;
 
     & > * {
-      margin-left: 12px;
+      margin-left: $av-padding-base;
     }
   }
-}
-
-.welcome-text {
-  margin-bottom: 64px;
-  color: $alloteal-color;
-  font-size: 16px;
-  line-height: 22px;
 }
 
 .content-wrapper {
@@ -72,64 +62,17 @@ body {
   .column {
     width: 48%;
 
-    &.left {
-    }
-    &.right {
-    }
-
     .room-list {
       display: flex;
       flex-direction: column;
       margin-bottom: 24px;
 
       &__title {
-        margin-bottom: 24px;
-        font-size: 14px;
-        text-transform: uppercase;
+        margin: 24px 0 12px 0;
+        font-size: $av-font-size-small;
         font-weight: $av-font-weight-bold;
+        text-transform: uppercase;
       }
-    }
-  }
-}
-
-
-
-.place-preview {
-  display: flex;
-  flex-direction: row;
-
-  .column-left {
-    flex: 1 0 50%;
-
-    .column-container {
-      margin-right: 48px;
-
-      .button-container-vertical {
-        & > * {
-          margin-top: 12px;
-        }
-
-        &:first-child {
-          margin-top: 0px;
-        }
-      }
-    }
-  }
-
-  .column-right {
-    flex: 1 0 50%;
-
-  // Temporary arcade image
-    background: #f6f6f6
-      url(https://i.pinimg.com/originals/46/87/78/4687787db37170de8aebb754bc88e0f7.jpg)
-      no-repeat center / cover;
-  }
-
-  &.edit-place {
-    .column-right {
-      background: #fff
-      url("/images/magic-768x801.png")
-      no-repeat center / 80%;
     }
   }
 }

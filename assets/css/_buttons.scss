@@ -1,6 +1,6 @@
 .button {
   display: block;
-  background: $alloteal-light-color;
+  background: $av-color-teal-light;
   color: #fff;
   text-transform: uppercase;
   font-size: 12px;
@@ -15,13 +15,13 @@
   position: relative;
 
   &:hover {
-    background: $alloteal-color;
+    background: $av-color-teal;
   }
 
   &.primary {
-    background: $allored-color;
+    background: $av-color-orange;
     &:hover {
-      background: $allored-dark-color;
+      background: $av-color-orange-dark;
     }
   }
 
@@ -32,7 +32,7 @@
   &.logged-in {
     padding: 12px 24px 12px 52px;
     margin: 3px;
-    border: 0px solid $alloteal-color;
+    border: 0px solid $av-color-teal;
     
     
     img {
@@ -44,10 +44,9 @@
     }
 
     &:hover {
-      // padding: 15px 27px 15px 55px;
-      padding:9px 21px 9px 49px;
+      padding: 9px 21px 9px 49px;
       margin: 0;
-      border: 3px solid $alloteal-color;
+      border: 3px solid $av-color-teal;
 
       img {
         border-radius: 50%;

@@ -1,0 +1,59 @@
+
+/* -------------------------------------------------------------------------- */
+/* Basic 2-column grid (within cards), one being an image. */
+/* -------------------------------------------------------------------------- */
+
+.card-column-container {
+  display: flex;
+  flex-direction: row;
+  column-gap: $av-padding-base;
+  -webkit-column-gap: $av-padding-base;
+
+  &__column-left, &__column-right {
+    flex: 1 0 50%;
+    display: inline-block;;
+    column-gap: $av-padding-base;
+    -webkit-column-gap: $av-padding-base;
+    box-sizing: border-box;
+
+    img {
+      width:100%;
+      height:100%;
+      object-fit: cover;
+    }
+  }
+
+  &__column-left {
+    padding-right: $av-padding-base;
+  }
+
+  &__column-right {
+    padding-left: $av-padding-base;
+  }  
+}
+
+/* -------------------------------------------------------------------------- */
+/* When displaying more than 1 button vertically, wrap them in this container */
+/* -------------------------------------------------------------------------- */
+
+.button-container-vertical {
+  & > * {
+    margin-top: $av-padding-base;
+  }
+
+  &:first-child {
+    margin-top: 0px;
+  }
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Standard message box  */
+/* -------------------------------------------------------------------------- */
+
+.message-box {
+  margin-bottom: 64px;
+  color: $av-color-teal;
+  font-size: 16px;
+  line-height: 22px;
+}

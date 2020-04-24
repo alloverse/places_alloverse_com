@@ -1,5 +1,5 @@
  <%# {!isLoggedIn && ( %>
-  <div class="card welcome-text animated fadeInDown">
+  <div class="card message-box">
     <h3>Welcome to Alloverse Places!</h3>
     <p>
       Here, you’ll find places hosted by Alloverse’s own servers. If
