@@ -22,15 +22,31 @@ input[type=text],input[type=password],textarea {
   border: 1px solid $av-color-teal-superlight;
   background: $av-color-input-background;
   
-
   font-size: $av-font-size-base;
   padding: $av-padding-base;
 
   &::placeholder {
     color: $av-color-teal-superlight;
   }
+
+  &.error {
+    border-color: $av-color-error;
+  }
 }
 
 textarea {
   min-height: 120px;
+}
+
+
+.input-message {
+  font-size: $av-font-size-small;
+  border-left-width: 3px;
+  border-left-style: solid;
+  padding-left: 12px;
+  
+  &.error {
+    color: $av-color-error;
+    border-color: $av-color-error;
+  }
 }

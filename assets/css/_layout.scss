@@ -57,3 +57,24 @@
   font-size: 16px;
   line-height: 22px;
 }
+
+
+
+.message-panel {
+  position: sticky;
+  box-sizing: border-box;
+  top: 0;
+  width: 100vw;
+  color: $av-color-message-bg;
+  padding: 36px 36px 24px 36px;
+  z-index: 1; //current highest
+
+  &.warning {
+    background: $av-color-warning;
+  }
+
+  &.error {
+    background: $av-color-error;
+    color: #fff;
+  }
+}

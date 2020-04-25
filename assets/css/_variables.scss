@@ -9,8 +9,9 @@ $av-color-teal-superlight: #B4C6D4;
 $av-color-orange: #e66c48;
 $av-color-orange-dark: #c04c2a;
 
-$av-color-error: #f66;
+$av-color-error: #CF3720;
 $av-color-warning: #fc6;
+$av-color-message-bg: #1f2526;
 
 $av-color-card-shadow: rgba(51, 111, 121, 0.07);
 $av-color-input-background: rgba(180, 198, 212, 0.1);
@@ -40,4 +41,5 @@ $av-font-weight-bold: 600;
 $av-padding-base: 12px;
 
 /* Standard animation specification */
+/* TODO: Improve performance by only animating things that matter, i.e. not "all" */
 $av-standard-animation: all ease-in-out 0.15s;
