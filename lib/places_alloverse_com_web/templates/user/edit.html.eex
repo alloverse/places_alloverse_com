@@ -1,16 +1,19 @@
 <div class="card">
   <div class="card-column-container">
     <div class="card-column-container__column-left">
-      <h2>Create or edit account</h2>
+      <div class="column-content">
 
-      <div class="form-container">
-        <input type="text" placeholder="Username" />
-        <input type="text" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <h2>Create or edit account</h2>
 
-        <div class="button">Join Alloverse</div>
+        <div class="form-container">
+          <input type="text" placeholder="Username" />
+          <input type="text" placeholder="Email" />
+          <input type="password" placeholder="Password" />
+
+          <div class="button">Join Alloverse</div>
+        </div>
       </div>
-      </div>
+    </div>
 
   <div class="card-column-container__column-right">
   </div>

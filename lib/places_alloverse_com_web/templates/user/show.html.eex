@@ -1,8 +1,15 @@
-
 <div class="card">
-  <h2>Account/User page for<%= @id %>!</h2>
+  <div class="card-column-container">
+    <div class="card-column-container__column-left">
+      <div class="column-content">
+        <h2>Account/User page for<%= @id %>!</h2>
 
-  <ul>
-    <li><%= link("Edit profile", to: "/user/43/edit")%></li>
-  </ul>
+        <ul>
+          <li><%= link("Edit profile", to: "/user/43/edit")%></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-column-container__column-right">
+    </div>
+  </div>
 </div>

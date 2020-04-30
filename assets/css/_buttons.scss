@@ -28,29 +28,65 @@
   &.large {
     font-size: 16px;
   }
+}
 
-  &.logged-in {
-    padding: 12px 24px 12px 52px;
-    margin: 3px;
-    border: 0px solid $av-color-teal;
-    
-    
-    img {
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      border-radius: 50%;
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+
+  transition: $av-standard-animation;
+
+  &:hover {
+    /* Show the dropdown menu on hover */
+    .dropdown-content { 
+      display: block; 
     }
 
-    &:hover {
-      padding: 9px 21px 9px 49px;
-      margin: 0;
-      border: 3px solid $av-color-teal;
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .button { 
+      background-color: $av-color-teal-dark; 
+    }
+  }
 
-      img {
-        border-radius: 50%;
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border-radius: $av-border-radius-double;
+    min-width: 160px;
+    box-shadow: $av-box-shadow-base;
+    z-index: 1;
+
+    padding-top: $av-border-radius-double;
+    padding-bottom: $av-border-radius-double;
+    
+    /* Links inside the dropdown */
+    a {
+      color: $av-font-color;
+      padding: 12px 24px;
+      text-decoration: none;
+      display: block;
+
+      // &:first-child {
+      //   border-top-left-radius: $av-border-radius-double;
+      //   border-top-right-radius: $av-border-radius-double;
+      // }
+
+      // &:last-child {
+      //   border-bottom-left-radius: $av-border-radius-double;
+      //   border-bottom-right-radius: $av-border-radius-double;
+      // }
+      
+
+      /* Change color of dropdown links on hover */
+      &:hover {
+        background-color: $av-color-teal-superlight;
       }
     }
   }
+ 
 }

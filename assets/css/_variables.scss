@@ -5,6 +5,8 @@ $av-color-teal: #336f79;
 $av-color-teal-dark: #4d777e;
 $av-color-teal-light: #64939e;
 $av-color-teal-superlight: #B4C6D4;
+$av-color-yellow: #ffe259;
+$av-color-yellow-superlight: #fff0a7;
 
 $av-color-orange: #e66c48;
 $av-color-orange-dark: #c04c2a;
@@ -23,8 +25,13 @@ $card-highlight-border-width: 3px;
 
 
 /* Border radii */
-$av-border-radius: 12px;
+$av-border-radius-base: 12px;
+$av-border-radius-double: calc(2 * #{$av-border-radius-base});
+$av-border-radius-triple: calc(3 * #{$av-border-radius-base});
+$av-border-radius-quadruple: calc(4 * #{$av-border-radius-base});
 
+
+$av-font-color: $av-color-teal;
 
 /* Font sizes */
 $av-font-size-base: 17px;
@@ -39,7 +46,20 @@ $av-font-weight-bold: 600;
 
 /* Standard padding & margins */
 $av-padding-base: 12px;
+$av-padding-double: calc(2 * #{$av-padding-base});
+$av-padding-triple: calc(3 * #{$av-padding-base});
+$av-padding-quadruple: calc(4 * #{$av-padding-base});
+
 
 /* Standard animation specification */
 /* TODO: Improve performance by only animating things that matter, i.e. not "all" */
 $av-standard-animation: all ease-in-out 0.15s;
+
+
+/* Standard box shadow */
+$av-box-shadow-base:  0 1px 2px $av-color-card-shadow, 
+                      0 2px 4px $av-color-card-shadow, 
+                      0 4px 8px $av-color-card-shadow, 
+                      0 8px 16px $av-color-card-shadow,
+                      0 16px 32px $av-color-card-shadow, 
+                      0 32px 64px $av-color-card-shadow;

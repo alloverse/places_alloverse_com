@@ -11,7 +11,7 @@
 
   &__column-left, &__column-right {
     flex: 1 0 50%;
-    display: inline-block;;
+    display: inline-block;
     column-gap: $av-padding-base;
     -webkit-column-gap: $av-padding-base;
     box-sizing: border-box;
@@ -21,14 +21,38 @@
       height:100%;
       object-fit: cover;
     }
+
+    .column-content {
+      padding: $av-padding-quadruple;
+
+      .column-content__header {
+
+      }
+
+      .column-content__subheader {
+        
+      }
+
+      .column-content__paragraph {
+        margin-bottom: $av-padding-quadruple;
+      }
+    }
   }
 
   &__column-left {
-    padding-right: $av-padding-base;
+    //padding-right: $av-padding-base;
+
+    img {
+      border-radius: 0 $av-border-radius-quadruple $av-border-radius-quadruple 0;
+    }
   }
 
   &__column-right {
-    padding-left: $av-padding-base;
+    //padding-left: $av-padding-base;
+
+    img {
+      border-radius: 0 $av-border-radius-quadruple $av-border-radius-quadruple 0;
+    }
   }  
 }
 
@@ -51,11 +75,18 @@
 /* Standard message box  */
 /* -------------------------------------------------------------------------- */
 
-.message-box {
+.card.message-box {
   margin-bottom: 64px;
   color: $av-color-teal;
   font-size: 16px;
   line-height: 22px;
+  border-radius: 0;
+  padding: $av-padding-triple;
+  background: $av-color-yellow-superlight;
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 

@@ -1,19 +1,22 @@
 <div class="card">
   <div class="card-column-container">
     <div class="card-column-container__column-left">
-      <h2>Log in</h2>
+      <div class="column-content">
+      
+        <h2>Log in</h2>
 
-      <div class="form-container">
-        <input type="text" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <div class="form-container">
+          <input type="text" placeholder="Email" />
+          <input type="password" placeholder="Password" />
 
-        <%# TODO: Display this error message if something goes wrong with the input field%>
-        <%# <input  class="error" type="text" placeholder="error demo input" /> %>
-        <%# <div class="input-message error">This is a sample input error message</div> %>
+          <%# TODO: Display this error message if something goes wrong with the input field%>
+          <%# <input  class="error" type="text" placeholder="error demo input" /> %>
+          <%# <div class="input-message error">This is a sample input error message</div> %>
 
-        <div class="button">Log In</div>
+          <div class="button">Log In</div>
 
-        <div><%= link("Forgot your password?", to: "/forgot-password") %></div>
+          <div><%= link("Forgot your password?", to: "/forgot-password") %></div>
+        </div>
       </div>
     </div>
 

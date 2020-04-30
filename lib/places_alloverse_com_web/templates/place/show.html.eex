@@ -1,12 +1,12 @@
 <div class="card">
   <div class="card-column-container">
     <div class="card-column-container__column-left">
-      <div class="column-container">
-        <h2>Place <%= @id %></h2>
-        <h4>
+      <div class="column-content">
+        <h2 class="column-content__header">Place <%= @id %></h2>
+        <h4 class="column-content__subheader">
           Created by <%= link("Nevyn", to: "/user/42")%> · 24 current guests
         </h4>
-        <p>
+        <p class="column-content__paragraph">
           An arcade symbolizes fun and affordable carefree times for
           all visitors where young and young-minded alike can enjoy a
           test of skill against a machine. If you thrive on gaming and
