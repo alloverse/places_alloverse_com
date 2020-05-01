@@ -26,6 +26,12 @@ defmodule PlacesAlloverseComWeb.Router do
 
   end
 
+  scope "/cms", PlacesAlloverseComWeb.CMS, as: :cms do
+    pipe_through [:browser, :authenticate_user]
+
+    resources "/pages", PageController
+  end
+
   defp authenticate_user(conn, _) do
     case get_session(conn, :user_id) do
       nil ->
@@ -34,7 +40,7 @@ defmodule PlacesAlloverseComWeb.Router do
         |> Phoenix.Controller.redirect(to: "/")
         |> halt()
       user_id ->
-        assign(conn, :current_user, PlacesAlloverseComWeb.Accounts.get_user!(user_id))
+        assign(conn, :current_user, PlacesAlloverseCom.Accounts.get_user!(user_id))
     end
   end
 
