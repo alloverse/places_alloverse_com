@@ -2,11 +2,13 @@ defmodule PlacesAlloverseCom.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias PlacesAlloverseCom.Accounts.Credential
+  alias PlacesAlloverseCom.Place
 
   schema "users" do
     field :name, :string
     field :username, :string
     has_one :credential, Credential
+    has_many :places, Place
 
     timestamps()
   end
