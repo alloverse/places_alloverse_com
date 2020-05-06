@@ -1,4 +1,4 @@
-defmodule PlacesAlloverseCom.Place do
+defmodule PlacesAlloverseCom.Places.Place do
   use Ecto.Schema
   import Ecto.Changeset
 
