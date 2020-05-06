@@ -1,24 +1,19 @@
-
 <!-- Place details -->
 
 <div class="card">
   <div class="place-preview">
     <div class="column-left">
       <div class="column-container">
-        <h2>Place <%= @id %></h2>
+        <h2><%= @place.name %></h2>
         <h4>
-          Created by <a href="#">Nevyn</a> · 24 current guests
+          Created by <%= @place.user.name %> · <%= if @place.public === true do "Public" else "Unlisted" end%>
         </h4>
         <p>
-          An arcade symbolizes fun and affordable carefree times for
-          all visitors where young and young-minded alike can enjoy a
-          test of skill against a machine. If you thrive on gaming and
-          providing a form of ageless entertainment, this is the place
-          for you!
+            <%= @place.description %>
         </p>
 
         <div class="button-container-vertical">
-          <%= link("Edit", to: "/place/42/edit", class: "button large")%>
+          <%= link("Edit", to: "/place/:id/edit", class: "button large")%>
 
           <div class="button large primary">Join</div>
         </div>
