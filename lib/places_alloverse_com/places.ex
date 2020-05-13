@@ -7,6 +7,7 @@ defmodule PlacesAlloverseCom.Places do
   alias PlacesAlloverseCom.Repo
 
   alias PlacesAlloverseCom.Places.Place
+  alias PlacesAlloverseCom.Accounts.User
 
   def list_places do
     Place
@@ -35,10 +36,15 @@ defmodule PlacesAlloverseCom.Places do
   end
 
 
-  def create_place(attrs \\ %{}) do
+  def create_place(%User{} = user, attrs \\ %{}) do
     %Place{}
     |> Place.changeset(attrs)
+    |> Ecto.Changeset.put_change(:user_id, user.id)
     |> Repo.insert()
+  end
+
+  def change_place(%Place{} = place) do
+    Place.changeset(place, %{})
   end
 
 
