@@ -32,7 +32,24 @@ defmodule PlacesAlloverseComWeb.PlaceController do
   end
 
   def edit(conn, %{"id" => id}) do
-    render(conn, "edit.html", id: id)
+    place = Places.get_place!(id)
+
+    changeset = Places.change_place(place)
+    render(conn, "edit.html", place: place, changeset: changeset)
+  end
+
+  def update(conn, %{"id" => id, "place" => place_params}) do
+    place = Places.get_place!(id)
+
+    case Places.update_place(place, place_params) do
+      {:ok, place} ->
+        conn
+        |> put_flash(:info, "Place updated successfully.")
+        |> redirect(to: Routes.place_path(conn, :show, place))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", place: place, changeset: changeset)
+    end
   end
 
 end

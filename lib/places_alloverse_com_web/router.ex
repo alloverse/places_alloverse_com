@@ -21,7 +21,7 @@ defmodule PlacesAlloverseComWeb.Router do
   scope "/place", PlacesAlloverseComWeb do
     pipe_through [:browser, :place_checks]
 
-    resources "/", PlaceController, only: [:new, :create, :delete, :edit]
+    resources "/", PlaceController, only: [:new, :create, :delete, :edit, :update]
 
   end
 

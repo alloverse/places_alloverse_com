@@ -1,19 +1,33 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+<div class="card">
+  <div class="place-preview edit-place">
+    <div class="column-left">
+      <div class="column-container">
+
+      <%= form_for @changeset, @action, fn f -> %>
+        <%= if @changeset.action do %>
+          <div class="alert alert-danger">
+            <p>Oops, something went wrong! Please check the errors below.</p>
+          </div>
+        <% end %>
+        
+        <%= text_input f, :name, placeholder: "Place name here" %>
+        <%= error_tag f, :name %>
+        <h4>unique_id.places.alloverse.com</h4>
+
+        <%= textarea f, :description, placeholder: "Short description of the place here" %>
+        <%= error_tag f, :description %>
+
+        <%= checkbox f, :public %>
+        <label>Make this place public</label>
+
+        <div class="button-container-vertical">
+          <div class="button large">
+            <%= submit "Save" %>
+          </div>
+        </div>
+      <% end %>
+      </div>
     </div>
-  <% end %>
-
-  <%= label f, :name %>
-  <%= text_input f, :name %>
-  <%= error_tag f, :name %>
-
-  <%= label f, :description %>
-  <%= textarea f, :description %>
-  <%= error_tag f, :description %>
-
-  <div>
-    <%= submit "Save" %>
+    <div class="column-right"></div>
   </div>
-<% end %>
+</div>
