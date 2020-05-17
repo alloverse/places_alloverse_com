@@ -1,33 +1,5 @@
-<div class="card">
-  <div class="card-column-container">
-    <div class="card-column-container__column-left">
-      <div class="column-content">
-    
-        <h2>Create or Edit Place</h2>
+<h2>Edit your Place</h2>
 
-        <div class="form-container">
+<%= render "form.html", Map.put(assigns, :action, Routes.place_path(@conn, :update, @place)) %>
 
-          <input type="text" placeholder="Place name here"  value="<%# placeName { %>"/>
-          
-          <div style="font-size: 14px; padding-left: 13px; color:#B4C6D4;">
-            unique_id.places.alloverse.com
-          </div>
-
-          <textarea placeholder="Short description of the place here"></textarea>
-          
-          <label for="steve" style="display: inline-block; font-size: 14px;">
-            <input type="checkbox" id="steve">&nbsp;&nbsp;&nbsp;Make this place public
-          </label>
-
-          <div class="button-container-vertical">
-            <%= link("Save", to: "/place/42/edit", class: "button large")%>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-    <div class="card-column-container__column-right">
-      <img src="/images/magic-768x801.png" />
-    </div>
-  </div>
-</div>
+<span><%= link "Back", to: Routes.place_path(@conn, :index) %></span>

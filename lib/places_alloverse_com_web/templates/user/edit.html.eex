@@ -1,21 +1,5 @@
-<div class="card">
-  <div class="card-column-container">
-    <div class="card-column-container__column-left">
-      <div class="column-content">
+<h1>Edit User</h1>
 
-        <h2>Create or edit account</h2>
+<%= render "form.html", Map.put(assigns, :action, Routes.user_path(@conn, :update, @user)) %>
 
-        <div class="form-container">
-          <input type="text" placeholder="Username" />
-          <input type="text" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-
-          <div class="button">Join Alloverse</div>
-        </div>
-      </div>
-    </div>
-
-  <div class="card-column-container__column-right">
-  </div>
-
-</div>
+<span><%= link "Back", to: Routes.user_path(@conn, :index) %></span>
