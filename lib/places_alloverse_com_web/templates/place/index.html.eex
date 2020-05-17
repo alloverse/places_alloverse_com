@@ -53,19 +53,21 @@
         <div class="subtitle">Elli &middot; April 18th 2020</div>
       <% end %>
 
-      
-      <%# if isLoggedIn { %>
-      <%= link to: "/place/new", class: "card create-place" do %>
+       <%= if signed_in?(@conn) do %>
+
+        <%= link to: "/place/new", class: "card create-place" do %>
         <div class="title">Create new Place</div>
         <div class="subtitle">Have it your way</div>
-      <% end %>
+        <%= end %>
+       
+      <%= else %>
 
-      <%# } else { %>
-      <%= link to: "/user/new", class: "card create-account" do %>
+        <%= link to: "/user/new", class: "card create-account" do %>
         <div class="title">Create an account</div>
         <div class="subtitle">Start making your own place</div>
+        <% end %>
       <% end %>
-      <%# } %>
+  
 
 
       
