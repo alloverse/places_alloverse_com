@@ -6,7 +6,13 @@ defmodule PlacesAlloverseComWeb.PlaceController do
 
 
   def index(conn, _params) do
-    render(conn, "index.html")
+
+    my_places = case Map.fetch(conn.assigns, :current_user ) do
+      :error -> []
+      {:ok, current_user} -> Places.list_my_places(current_user)
+    end
+
+    render(conn, "index.html", my_places: my_places)
   end
 
   def show(conn, %{"id" => id}) do
@@ -51,5 +57,4 @@ defmodule PlacesAlloverseComWeb.PlaceController do
         render(conn, "edit.html", place: place, changeset: changeset)
     end
   end
-
 end

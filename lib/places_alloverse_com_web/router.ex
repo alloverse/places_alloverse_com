@@ -14,6 +14,7 @@ defmodule PlacesAlloverseComWeb.Router do
   end
 
   pipeline :place_checks do
+    plug :assign_authenticated_user
     plug :ensure_authenticated_user
     # plug :ensure_user_owns_place
   end
@@ -26,7 +27,7 @@ defmodule PlacesAlloverseComWeb.Router do
   end
 
   scope "/", PlacesAlloverseComWeb do
-    pipe_through :browser
+    pipe_through [:browser, :assign_authenticated_user]
 
     get "/", PageController, :index
     resources "/place", PlaceController, only: [:show, :index]
@@ -38,6 +39,14 @@ defmodule PlacesAlloverseComWeb.Router do
 
   end
 
+  defp assign_authenticated_user(conn, _) do
+    case get_session(conn, :user_id) do
+      nil -> conn
+      user_id ->
+        assign(conn, :current_user, PlacesAlloverseCom.Accounts.get_user!(user_id))
+    end
+  end
+
   defp ensure_authenticated_user(conn, _) do
     case get_session(conn, :user_id) do
       nil ->
@@ -45,8 +54,7 @@ defmodule PlacesAlloverseComWeb.Router do
         |> Phoenix.Controller.put_flash(:error, "Login required")
         |> Phoenix.Controller.redirect(to: "/")
         |> halt()
-      user_id ->
-        assign(conn, :current_user, PlacesAlloverseCom.Accounts.get_user!(user_id))
+      _user_id -> conn
     end
   end
 

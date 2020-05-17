@@ -46,14 +46,20 @@
   </div>
   <div class="column right">
     <div class="room-list myplaces">
-      <div class="room-list__title">My Places</div>
-      
-      <%= link to: "/place/42", class: "card", style: "border-color: #33C842" do %>
-        <div class="title">Place 42</div>
-        <div class="subtitle">Elli &middot; April 18th 2020</div>
-      <% end %>
+     <%= if signed_in?(@conn) do %>
+      <div class="room-list__title">
+        My Places
+      </div>
 
-      <%= if signed_in?(@conn) do %>
+      <%= Enum.map(@my_places, fn(place) -> %>
+      
+        <%= link to: "/place/#{place.id}", class: "card", style: "border-color: #33C842" do %>
+          <div class="title"><%= place.name %></div>
+          <div class="subtitle"><%= place.user.name %> &middot; April 18th 2020</div>
+        <% end %>
+      <% end )%>
+
+     
 
         <%= link to: "/place/new", class: "card create-place" do %>
         <div class="title">Create new Place</div>
@@ -68,9 +74,6 @@
         <% end %>
       <% end %>
   
-
-
-      
     </div>
   </div>
 </div>

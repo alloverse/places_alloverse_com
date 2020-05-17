@@ -14,9 +14,10 @@ defmodule PlacesAlloverseCom.Places do
       |> Repo.all()
   end
 
-  def list_my_places do
-    Place
-      |> Repo.all()
+  def list_my_places(%User{} = user) do
+
+      Repo.all(from p in Place, where: p.user_id ==^ user.id)
+      |> Repo.preload(:user)
   end
 
   def list_recommended_places do
