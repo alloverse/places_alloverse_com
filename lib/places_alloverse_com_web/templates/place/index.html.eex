@@ -1,4 +1,4 @@
- <%# {!isLoggedIn && ( %>
+  <%= if signed_in?(@conn) do %>
   <div class="card message-box">
     <h3>Welcome to Alloverse Places!</h3>
     <p>
@@ -7,7 +7,7 @@
       following the instructions <a href="#">here</a>.
     </p>
   </div>
-<%# )} %>
+  <% end %>
 
 
 <div class="content-wrapper">
@@ -53,7 +53,7 @@
         <div class="subtitle">Elli &middot; April 18th 2020</div>
       <% end %>
 
-       <%= if signed_in?(@conn) do %>
+      <%= if signed_in?(@conn) do %>
 
         <%= link to: "/place/new", class: "card create-place" do %>
         <div class="title">Create new Place</div>
