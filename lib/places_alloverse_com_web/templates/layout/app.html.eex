@@ -29,20 +29,23 @@
 
           <div class="header__buttons">
           <%# TODO: replace "true" in the conditional with "if user is logged in" %>
-          <%= if false do %>
+          <%= if signed_in?(@conn) do %>
           <div class="dropdown-container">
             <a class="button image">
               <%# <img src="<%= Routes.static_path(@conn, "/images/user-picture.jpg") " /> %>
-              Toby Fox
+              <%= get_user_name(@conn) %>
             </a>
             <div class="dropdown-content">
               <a href="#">Settings (TBD)</a>
-              <a href="#">Log Out (TBD)</a>
+              <%= form_for @conn, Routes.session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
+                <div class="button">
+                  <%= submit "Log Out" %>
+                </div>
+              <% end %>
             </div>
           </div>
               <%# <img src="<%= Routes.static_path(@conn, "/images/user-picture.jpg")" /> %>
                 
-              
             <% else %>
               <%= link("Create Account", to: "/user/new", class: "button")%>
               <%= link("Log In", to: "/sessions/new", class: "button")%>
