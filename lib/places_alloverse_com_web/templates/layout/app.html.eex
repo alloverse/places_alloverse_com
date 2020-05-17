@@ -44,8 +44,8 @@
                 
               
             <% else %>
-              <%= link("Create Account", to: "/user/42/edit/", class: "button")%>
-              <%= link("Log In", to: "/login/", class: "button")%>
+              <%= link("Create Account", to: "/user/new", class: "button")%>
+              <%= link("Log In", to: "/sessions/new", class: "button")%>
             <% end %>
           </div>
         </div>
