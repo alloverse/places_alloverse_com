@@ -12,7 +12,9 @@ defmodule PlacesAlloverseComWeb.PlaceController do
       {:ok, current_user} -> Places.list_my_places(current_user)
     end
 
-    render(conn, "index.html", my_places: my_places)
+    public_places = Places.list_public_places()
+
+    render(conn, "index.html", my_places: my_places, public_places: public_places)
   end
 
   def show(conn, %{"id" => id}) do

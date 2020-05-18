@@ -30,17 +30,18 @@
     </div>
 
     <div class="room-list public">
-      <div class="room-list__title">Public</div>
+      <div class="room-list__title">
+        Public
+      </div>
 
-      <%= link to: "/place/42", class: "card" do %>
-        <div class="title">Hockey Rink</div>
-        <div class="subtitle">Created by Nevyn</div>
-      <% end %>
+      <%= Enum.map(@public_places, fn(public_place) -> %>
 
-      <%= link to: "/place/42", class: "card" do %>
-        <div class="title">Free talk</div>
-        <div class="subtitle">Created by Nevyn</div>
-      <% end %>
+        <%= link to: "/place/#{public_place.id}", class: "card" do %>
+          <div class="title"><%= public_place.name%></div>
+          <div class="subtitle">Created by <%= public_place.user.name%></div>
+        <% end %>
+
+      <%= end )%>
 
     </div>
   </div>
