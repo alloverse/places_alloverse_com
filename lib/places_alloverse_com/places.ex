@@ -25,7 +25,7 @@ defmodule PlacesAlloverseCom.Places do
   end
 
   def list_public_places do
-      Repo.all(from p in Place, where: p.public == true)
+      Repo.all(from p in Place, where: p.public == true, limit: 3)
       |> Repo.preload(:user)
   end
 
