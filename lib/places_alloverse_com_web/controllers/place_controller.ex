@@ -7,14 +7,16 @@ defmodule PlacesAlloverseComWeb.PlaceController do
 
   def index(conn, _params) do
 
+    recommended_places = Places.list_recommended_places()
+
+    public_places = Places.list_public_places()
+
     my_places = case Map.fetch(conn.assigns, :current_user ) do
       :error -> []
       {:ok, current_user} -> Places.list_my_places(current_user)
     end
 
-    public_places = Places.list_public_places()
-
-    render(conn, "index.html", my_places: my_places, public_places: public_places)
+    render(conn, "index.html", recommended_places: recommended_places, public_places: public_places, my_places: my_places)
   end
 
   def show(conn, %{"id" => id}) do

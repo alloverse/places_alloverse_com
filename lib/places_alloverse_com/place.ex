@@ -8,6 +8,7 @@ defmodule PlacesAlloverseCom.Places.Place do
     field :description, :string
     field :name, :string
     field :public, :boolean, default: false
+    field :recommended, :boolean, default: false
     belongs_to :user, User
 
     timestamps()
@@ -16,7 +17,7 @@ defmodule PlacesAlloverseCom.Places.Place do
   @doc false
   def changeset(place, attrs) do
     place
-    |> cast(attrs, [:name, :description, :public])
+    |> cast(attrs, [:name, :description, :public, :recommended])
     |> validate_required([:name, :description, :public])
   end
 end

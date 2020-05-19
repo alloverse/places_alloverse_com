@@ -9,24 +9,20 @@ defmodule PlacesAlloverseCom.Places do
   alias PlacesAlloverseCom.Places.Place
   alias PlacesAlloverseCom.Accounts.User
 
-  def list_places do
-    Place
-      |> Repo.all()
-  end
-
-  def list_my_places(%User{} = user) do
-      Repo.all(from p in Place, where: p.user_id ==^ user.id)
-      |> Repo.preload(:user)
-  end
 
   def list_recommended_places do
-    Place
-      |> Repo.all()
+      Repo.all(from p in Place, where: p.recommended == true, limit: 3)
+      |> Repo.preload(:user)
   end
 
   def list_public_places do
       Repo.all(from p in Place, where: p.public == true, limit: 3)
       |> Repo.preload(:user)
+  end
+
+  def list_my_places(%User{} = user) do
+    Repo.all(from p in Place, where: p.user_id ==^ user.id)
+    |> Repo.preload(:user)
   end
 
   def get_place!(id) do

@@ -17,15 +17,14 @@
         Recommended
       </div>
 
-      <%= link to: "/place/42", class: "card" do %>
-        <div class="title">Fourty-two</div>
-        <div class="subtitle">Created by Nevyn</div>
-      <% end %>
+      <%= Enum.map(@recommended_places, fn(recommended_place) -> %>
 
-      <%= link to: "/place/42", class: "card" do %>
-        <div class="title">Bun bun bakery</div>
-        <div class="subtitle">Created by Nevyn</div>
-      <% end %>
+        <%= link to: "/place/#{recommended_place.id}", class: "card" do %>
+          <div class="title"><%= recommended_place.name %></div>
+          <div class="subtitle">Created <%= recommended_place.user.name %></div>
+        <% end %>
+
+      <%= end )%>
 
     </div>
 
@@ -60,13 +59,11 @@
         <% end %>
       <% end )%>
 
-     
-
         <%= link to: "/place/new", class: "card create-place" do %>
         <div class="title">Create new Place</div>
         <div class="subtitle">Have it your way</div>
         <%= end %>
-       
+
       <%= else %>
 
         <%= link to: "/user/new", class: "card create-account" do %>
