@@ -11,13 +11,15 @@
     a#{&} {
       border-radius: $av-border-radius-base;
       cursor: pointer;
-      border-width: 0px;
+      border-width: 3px;
       border-style: solid;
-      padding: 32px;
+      padding: 29px;
+      border-color: #fff;
 
       &:hover {  
-        padding: 29px;
-        border-width: $card-highlight-border-width;
+        //padding: 29px;
+        //border-width: $card-highlight-border-width;
+        border-color: $av-color-teal;
         text-decoration: none;
       }
     }
@@ -47,7 +49,11 @@
 
   &.create-account {
     background: $av-color-orange;
-    border-color: $av-color-orange-dark;
+    border-color: $av-color-orange;
+
+    &:hover {
+      border-color: $av-color-orange-dark;
+    }
 
     .title,
     .subtitle {

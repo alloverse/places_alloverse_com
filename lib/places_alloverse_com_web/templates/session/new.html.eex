@@ -1,26 +1,26 @@
 <div class="card">
   <div class="card-column-container">
     <div class="card-column-container__column-left">
-       <div class="column-content">
+      <div class="column-content">
 
         <h2>Log in</h2>
+        
+        <%= form_for @conn, Routes.session_path(@conn, :create), [method: :post, as: :user, class: "form-container"], fn f -> %>
+          
+          <%= text_input f, :email, placeholder: "Email" %>
+          
+          <%= password_input f, :password, placeholder: "Password can be blank" %>
+          
+          <%= submit "Login", [class: "button full-width"] %>
+          
+        <% end %>
 
-<%= form_for @conn, Routes.session_path(@conn, :create), [method: :post, as: :user], fn f -> %>
-  <div class="form-group">
-    <%= text_input f, :email, placeholder: "Email" %>
-  </div>
+        <%= form_for @conn, Routes.session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
+          <%= submit "logout", [class: "button full-width"] %>
+        <% end %>
 
-  <div class="form-group">
-    <%= password_input f, :password, placeholder: "Password can be blank" %>
-  </div>
-
-    <div class="button">
-      <%= submit "Login" %>
+      </div>
     </div>
-<% end %>
-
-<%= form_for @conn, Routes.session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
-  <div class="button">
-    <%= submit "logout" %>
+    <div class="card-column-container__column-right"></div>
   </div>
-<% end %>
+</div>
