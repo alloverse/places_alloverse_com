@@ -12,40 +12,53 @@
 
 <div class="content-wrapper">
   <div class="column left">
-    <div class="room-list recommended">
-      <div class="room-list__title">
-        Recommended
+
+    <%# Only draw recommended places cards (and their header) if such a list exists %>
+    <%= if not Enum.empty?(@recommended_places) do %>
+      <div class="room-list recommended">
+        <div class="room-list__title">
+          Recommended
+        </div>
+
+        <%= Enum.map(@recommended_places, fn(recommended_place) -> %>
+
+          <%= link to: "/place/#{recommended_place.id}", class: "card" do %>
+            <div class="title"><%= recommended_place.name %></div>
+            <div class="subtitle">Created <%= recommended_place.user.name %></div>
+          <% end %>
+
+        <%= end )%>
+
       </div>
+    <% end %>
 
-      <%= Enum.map(@recommended_places, fn(recommended_place) -> %>
 
-        <%= link to: "/place/#{recommended_place.id}", class: "card" do %>
-          <div class="title"><%= recommended_place.name %></div>
-          <div class="subtitle">Created <%= recommended_place.user.name %></div>
-        <% end %>
+    <%# Only draw public places cards (and their header) if such a list exists %>
+    <%= if not Enum.empty?(@public_places) do %>
+      <div class="room-list public">
+        <div class="room-list__title">
+          Public
+        </div>
 
-      <%= end )%>
+        <%= Enum.map(@public_places, fn(public_place) -> %>
 
-    </div>
+          <%= link to: "/place/#{public_place.id}", class: "card" do %>
+            <div class="title"><%= public_place.name%></div>
+            <div class="subtitle">Created by <%= public_place.user.name%></div>
+          <% end %>
 
-    <div class="room-list public">
-      <div class="room-list__title">
-        Public
+        <%= end )%>
+
       </div>
+    <% end %>
 
-      <%= Enum.map(@public_places, fn(public_place) -> %>
-
-        <%= link to: "/place/#{public_place.id}", class: "card" do %>
-          <div class="title"><%= public_place.name%></div>
-          <div class="subtitle">Created by <%= public_place.user.name%></div>
-        <% end %>
-
-      <%= end )%>
-
-    </div>
+    
   </div>
   <div class="column right">
     <div class="room-list myplaces">
+
+      
+
      <%= if signed_in?(@conn) do %>
       <div class="room-list__title">
         My Places
@@ -60,15 +73,19 @@
       <% end )%>
 
         <%= link to: "/place/new", class: "card create-place" do %>
-        <div class="title">Create new Place</div>
-        <div class="subtitle">Have it your way</div>
+          <div class="title">Create new Place</div>
+          <div class="subtitle">Have it your way</div>
         <%= end %>
 
       <%= else %>
 
+        <div class="room-list__title">
+          Private
+        </div>
+
         <%= link to: "/user/new", class: "card create-account" do %>
-        <div class="title">Create an account</div>
-        <div class="subtitle">Start making your own place</div>
+          <div class="title">Create an account</div>
+          <div class="subtitle">Start making your own place</div>
         <% end %>
       <% end %>
   

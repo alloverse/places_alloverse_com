@@ -5,11 +5,11 @@
       
     <div class="card-column-container__column-left">
       <div class="column-content">
-        <h2><%= @place.name %></h2>
-        <h4>
+        <h2 class="column-content__header"><%= @place.name %></h2>
+        <h4 class="column-content__subheader">
           Created by <%= @place.user.name %> · <%= if @place.public === true do "Public" else "Unlisted" end%>
         </h4>
-        <p>
+        <p class="column-content__paragraph">
             <%= @place.description %>
         </p>
 

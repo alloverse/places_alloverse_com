@@ -49,6 +49,7 @@ $av-padding-base: 12px;
 $av-padding-double: calc(2 * #{$av-padding-base});
 $av-padding-triple: calc(3 * #{$av-padding-base});
 $av-padding-quadruple: calc(4 * #{$av-padding-base});
+$av-padding-half: calc(#{$av-padding-base}/2);
 
 
 /* Standard animation specification */

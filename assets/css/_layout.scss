@@ -26,30 +26,26 @@
       padding: $av-padding-quadruple;
 
       .column-content__header {
-
+        margin: 0 0 $av-padding-half 0 ;
       }
 
       .column-content__subheader {
-        
+        margin: 0 0 $av-padding-half 0 ;
       }
 
       .column-content__paragraph {
-        margin-bottom: $av-padding-quadruple;
+        margin: $av-padding-double 0;
       }
     }
   }
 
   &__column-left {
-    //padding-right: $av-padding-base;
-
     img {
       border-radius: 0 $av-border-radius-quadruple $av-border-radius-quadruple 0;
     }
   }
 
   &__column-right {
-    //padding-left: $av-padding-base;
-
     img {
       border-radius: 0 $av-border-radius-quadruple $av-border-radius-quadruple 0;
     }

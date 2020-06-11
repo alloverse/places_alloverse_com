@@ -1,5 +1,24 @@
-<h1>Create account</h1>
+<div class="card">
+  <div class="card-column-container">
+    <div class="card-column-container__column-left">
+      <div class="column-content">
 
-<%= render "form.html", Map.put(assigns, :action, Routes.user_path(@conn, :create)) %>
+        <%# <%= link "< Back", to: Routes.user_path(@conn, :index) %>
 
-<span><%= link "Back", to: Routes.user_path(@conn, :index) %></span>
+        <h2>Create Account</h2>
+
+        <%= render "form.html", Map.put(assigns, :action, Routes.user_path(@conn, :create)) %>
+        
+      </div>
+
+    </div>
+    
+    <div class="card-column-container__column-right">
+      <!-- empty -->
+    </div>
+    
+  </div>
+</div>
+
+
+
