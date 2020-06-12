@@ -16,7 +16,7 @@
         <div class="button-container-vertical">
           <%= link("Edit", to: "/place/#{@place.id}/edit", class: "button large")%>
 
-          <div class="button large primary">Join</div>
+          <div class="button large primary">Join (N/A)</div>
         </div>
       </div>
     </div>

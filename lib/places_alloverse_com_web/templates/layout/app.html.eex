@@ -21,14 +21,14 @@
         <div class="header">
 
           <%= link to: "/", class: "header__title" do %>
-            <img src="<%= Routes.static_path(@conn, "/images/alloverse-logo.png") %>" class="header__title__logo" />
+            <img class="header__title__logo" src="<%= Routes.static_path(@conn, "/images/alloverse-logo.png") %>" />
             <span>
               Alloverse <strong>Places</strong>    
             </span>
           <% end %>
 
           <div class="header__buttons">
-          <%# TODO: replace "true" in the conditional with "if user is logged in" %>
+          
           <%= if signed_in?(@conn) do %>
           <div class="dropdown-container">
             <a class="button image">
@@ -38,9 +38,9 @@
             <div class="dropdown-content">
               <a href="#">Settings (TBD)</a>
               <%= form_for @conn, Routes.session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
-                <div class="button">
-                  <%= submit "Log Out" %>
-                </div>
+                <%# <div class="button"> %>
+                  <%= submit "Log Out", [class: "button"] %>
+                <%# </div> %>
               <% end %>
             </div>
           </div>
