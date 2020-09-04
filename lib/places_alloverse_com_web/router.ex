@@ -30,7 +30,7 @@ defmodule PlacesAlloverseComWeb.Router do
     pipe_through [:browser, :assign_authenticated_user]
 
     get "/", PageController, :index
-    resources "/place", PlaceController, only: [:show, :index]
+    resources "/place", PlaceController, only: [:show, :index, :delete]
     resources "/user", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete],
                                               singleton: true

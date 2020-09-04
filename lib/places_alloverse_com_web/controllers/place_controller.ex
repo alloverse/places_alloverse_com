@@ -48,6 +48,15 @@ defmodule PlacesAlloverseComWeb.PlaceController do
     render(conn, "edit.html", place: place, changeset: changeset)
   end
 
+  def delete(conn, %{"id" => id}) do
+    place = Places.get_place!(id)
+    {:ok, _place} = Places.delete_place(place)
+
+    conn
+    |> put_flash(:info, "Place deleted successfully.")
+    |> redirect(to: Routes.place_path(conn, :index))
+  end
+
   def update(conn, %{"id" => id, "place" => place_params}) do
     place = Places.get_place!(id)
 

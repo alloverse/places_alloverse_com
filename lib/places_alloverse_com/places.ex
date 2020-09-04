@@ -43,6 +43,10 @@ defmodule PlacesAlloverseCom.Places do
     Place.changeset(place, %{})
   end
 
+  def delete_place(%Place{} = place) do
+    Repo.delete(place)
+  end
+
   def update_place(%Place{} = place, attrs) do
     place
     |> Place.changeset(attrs)
