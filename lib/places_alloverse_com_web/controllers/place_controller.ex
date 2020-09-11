@@ -30,14 +30,27 @@ defmodule PlacesAlloverseComWeb.PlaceController do
   end
 
   def create(conn, %{"place" => place_params}) do
-    case Places.create_place(conn.assigns.current_user, place_params) do
-      {:ok, place} ->
-        conn
-        |> put_flash(:info, "Place created successfully.")
-        |> redirect(to: Routes.place_path(conn, :show, place))
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+    my_places = case Map.fetch(conn.assigns, :current_user ) do
+      :error -> []
+      {:ok, current_user} -> Places.list_my_places(current_user)
+    end
+
+    if length(my_places) >= 5 do
+      IO.puts "Maximum number of places reached."
+      conn
+      |> put_flash(:info, "You can't create more than 5 places, sorry.")
+      |> redirect(to: Routes.place_path(conn, :index))
+    else
+      case Places.create_place(conn.assigns.current_user, place_params) do
+        {:ok, place} ->
+          conn
+          |> put_flash(:info, "Place created successfully.")
+          |> redirect(to: Routes.place_path(conn, :show, place))
+
+        {:error, %Ecto.Changeset{} = changeset} ->
+          render(conn, "new.html", changeset: changeset)
+      end
     end
   end
 
