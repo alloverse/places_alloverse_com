@@ -27,7 +27,7 @@
             <div class="subtitle">Created <%= recommended_place.user.name %></div>
           <% end %>
 
-        <%= end )%>
+        <% end )%>
 
       </div>
     <% end %>
@@ -47,7 +47,7 @@
             <div class="subtitle">Created by <%= public_place.user.name%></div>
           <% end %>
 
-        <%= end )%>
+        <% end )%>
 
       </div>
     <% end %>
@@ -75,9 +75,9 @@
         <%= link to: "/place/new", class: "card create-place" do %>
           <div class="title">Create new Place</div>
           <div class="subtitle">Have it your way</div>
-        <%= end %>
+        <% end %>
 
-      <%= else %>
+      <% else %>
 
         <div class="room-list__title">
           Private
