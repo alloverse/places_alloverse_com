@@ -14,8 +14,8 @@
         </p>
 
         <div class="button-container-vertical">
-          <%= link("Edit", to: "/place/#{@place.id}/edit", class: "button large")%>
-          <%= link "Delete", to: "/place/#{@place.id}", method: :delete, data: [confirm: "Are you sure?"], class: "button large" %>
+          <%= if @place.user.id === @current_user.id do link("Edit", to: "/place/#{@place.id}/edit", class: "button large") end %>
+          <%= if @place.user.id === @current_user.id do link "Delete", to: "/place/#{@place.id}", method: :delete, data: [confirm: "Are you sure?"], class: "button large" end %>
 
           <div class="button large primary">Join (N/A)</div>
         </div>
