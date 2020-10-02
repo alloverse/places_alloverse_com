@@ -71,16 +71,29 @@ defmodule PlacesAlloverseComWeb.PlaceController do
   end
 
   def update(conn, %{"id" => id, "place" => place_params}) do
+
+    my_places = case Map.fetch(conn.assigns, :current_user ) do
+      :error -> []
+      {:ok, current_user} -> Places.list_my_places(current_user)
+    end
+
+    my_place_ids = Enum.map(my_places, fn my_place -> my_place.id end)
     place = Places.get_place!(id)
 
-    case Places.update_place(place, place_params) do
-      {:ok, place} ->
-        conn
-        |> put_flash(:info, "Place updated successfully.")
-        |> redirect(to: Routes.place_path(conn, :show, place))
+    if Enum.member?(my_place_ids, id) do
+      case Places.update_place(place, place_params) do
+        {:ok, place} ->
+          conn
+          |> put_flash(:info, "Place updated successfully.")
+          |> redirect(to: Routes.place_path(conn, :show, place))
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", place: place, changeset: changeset)
+        {:error, %Ecto.Changeset{} = changeset} ->
+          render(conn, "edit.html", place: place, changeset: changeset)
+      end
+    else
+      conn
+      |> put_flash(:info, "You can only edit places you own.")
+      |> redirect(to: Routes.place_path(conn, :index))
     end
   end
 end
