@@ -62,12 +62,27 @@ defmodule PlacesAlloverseComWeb.PlaceController do
   end
 
   def delete(conn, %{"id" => id}) do
-    place = Places.get_place!(id)
-    {:ok, _place} = Places.delete_place(place)
 
-    conn
-    |> put_flash(:info, "Place deleted successfully.")
-    |> redirect(to: Routes.place_path(conn, :index))
+    my_places = case Map.fetch(conn.assigns, :current_user ) do
+      :error -> []
+      {:ok, current_user} -> Places.list_my_places(current_user)
+    end
+
+    my_place_ids = Enum.map(my_places, fn my_place -> my_place.id end)
+
+    place = Places.get_place!(id)
+
+    if Enum.member?(my_place_ids, id) do
+      {:ok, _place} = Places.delete_place(place)
+
+      conn
+      |> put_flash(:info, "Place deleted successfully.")
+      |> redirect(to: Routes.place_path(conn, :index))
+    else
+      conn
+      |> put_flash(:info, "You can only delete a places you own.")
+      |> redirect(to: Routes.place_path(conn, :index))
+    end
   end
 
   def update(conn, %{"id" => id, "place" => place_params}) do
