@@ -18,6 +18,11 @@
       <%= error_tag cf, :email %>
     <% end %>
 
+     <%= inputs_for f, :credential, fn cf -> %>
+      <%= password_input cf, :password, placeholder: "Password" %>
+      <%= error_tag cf, :password %>
+    <% end %>
+
     <div class="button-container-vertical">
       <%= submit "Save", [class: "button full-width"] %>
     </div>    
