@@ -14,7 +14,9 @@ defmodule PlacesAlloverseComWeb.SessionController do
     if user = Accounts.get_user_by_email_and_password(email, password) do
       UserAuth.login_user(conn, user, user_params)
     else
-      render(conn, "new.html", error_message: "Invalid e-mail or password")
+      conn
+        |> put_flash(:error, "Invalid e-mail or password")
+        |> render("new.html")
     end
   end
 

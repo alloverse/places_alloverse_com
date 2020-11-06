@@ -231,12 +231,9 @@ defmodule PlacesAlloverseCom.Accounts do
     Repo.get_by(User, email: email)
   end
 
-  def get_user_by_email_and_password(email, password) do
-    # when is_binary(email) and is_binary(password) do
-      user = Repo.get_by(Credential, email: email)
-      IO.puts "get_user_by_email_and_password"
-      IO.inspect user
-      if Credential.valid_password?(user, password), do: user
+  def get_user_by_email_and_password(email, password) when is_binary(email) and is_binary(password) do
+    credential = Repo.get_by(Credential, email: email) |> Repo.preload(:user)
+    if Credential.valid_password?(credential, password), do: credential.user
   end
 
 
