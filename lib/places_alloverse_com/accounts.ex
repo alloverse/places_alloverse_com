@@ -6,7 +6,7 @@ defmodule PlacesAlloverseCom.Accounts do
   import Ecto.Query, warn: false
   alias PlacesAlloverseCom.Repo
 
-  alias PlacesAlloverseCom.Accounts.{User, Credential, UserToken}
+  alias PlacesAlloverseCom.Accounts.{User, Credential, UserToken, UserNotifier}
 
   @doc """
   Returns the list of users.
@@ -55,12 +55,12 @@ defmodule PlacesAlloverseCom.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_user(attrs \\ %{}) do
-    %User{}
-    |> User.changeset(attrs)
-    |> Ecto.Changeset.cast_assoc(:credential, with: &Credential.changeset/2)
-    |> Repo.insert()
-  end
+  # def create_user(attrs \\ %{}) do
+  #   %User{}
+  #   |> User.changeset(attrs)
+  #   |> Ecto.Changeset.cast_assoc(:credential, with: &Credential.changeset/2)
+  #   |> Repo.insert()
+  # end
 
   def register_user(attrs) do
     %User{}
@@ -274,15 +274,38 @@ defmodule PlacesAlloverseCom.Accounts do
       iex> deliver_user_confirmation_instructions(confirmed_user, &Routes.user_confirmation_url(conn, :confirm, &1))
       {:error, :already_confirmed}
   """
-  # def deliver_user_confirmation_instructions(%User{} = user, confirmation_url_fun)
-  #     when is_function(confirmation_url_fun, 1) do
-  #   if user.confirmed_at do
-  #     {:error, :already_confirmed}
-  #   else
-  #     {encoded_token, user_token} = UserToken.build_email_token(user, "confirm")
-  #     Repo.insert!(user_token)
-  #     UserNotifier.deliver_confirmation_instructions(user, confirmation_url_fun.(encoded_token))
-  #   end
-  # end
+  def deliver_user_confirmation_instructions(%User{} = user, confirmation_url_fun)
+      when is_function(confirmation_url_fun, 1) do
+    user = Repo.preload(user, :credential)
+    if user.credential.confirmed_at do
+      {:error, :already_confirmed}
+    else
+      {encoded_token, user_token} = UserToken.build_email_token(user, "confirm")
+      Repo.insert!(user_token)
+      UserNotifier.deliver_confirmation_instructions(user, confirmation_url_fun.(encoded_token))
+    end
+  end
+
+  @doc """
+  Confirms a user by the given token.
+  If the token matches, the user account is marked as confirmed
+  and the token is deleted.
+  """
+  def confirm_user(token) do
+    with {:ok, query} <- UserToken.verify_email_token_query(token, "confirm"),
+        %User{} = user <- Repo.one(query),
+        {:ok, %{user: user}} <- Repo.transaction(confirm_user_multi(user.credential)) do
+      {:ok, user}
+    else
+      _ -> :error
+    end
+  end
+
+  defp confirm_user_multi(credential) do
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:credential, Credential.confirm_changeset(credential))
+    |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(credential.user, ["confirm"]))
+  end
+
 
 end

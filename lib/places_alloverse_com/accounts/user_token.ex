@@ -53,7 +53,7 @@ defmodule PlacesAlloverseCom.Accounts.UserToken do
   their email.
   """
   def build_email_token(user, context) do
-    build_hashed_token(user, context, user.email)
+    build_hashed_token(user, context, user.credential.email)
   end
 
   defp build_hashed_token(user, context, sent_to) do
@@ -82,7 +82,8 @@ defmodule PlacesAlloverseCom.Accounts.UserToken do
         query =
           from token in token_and_context_query(hashed_token, context),
             join: user in assoc(token, :user),
-            where: token.inserted_at > ago(^days, "day") and token.sent_to == user.email,
+            join: credential in assoc(user, :credential),
+            where: token.inserted_at > ago(^days, "day") and token.sent_to == credential.email,
             select: user
 
         {:ok, query}

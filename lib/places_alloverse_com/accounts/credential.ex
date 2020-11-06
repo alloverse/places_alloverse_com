@@ -8,7 +8,7 @@ defmodule PlacesAlloverseCom.Accounts.Credential do
     field :email, :string
     field :password, :string, virtual: true
     field :hashed_password, :string
-    # field :confirmed_at, :naive_datetime
+    field :confirmed_at, :naive_datetime
     belongs_to :user, User
 
     timestamps()
@@ -91,9 +91,9 @@ defmodule PlacesAlloverseCom.Accounts.Credential do
   @doc """
   Confirms the account by setting `confirmed_at`.
   """
-  def confirm_changeset(user) do
+  def confirm_changeset(credential) do
     now = NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
-    change(user, confirmed_at: now)
+    change(credential, confirmed_at: now)
   end
 
   @doc """

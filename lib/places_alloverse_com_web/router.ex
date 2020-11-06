@@ -86,9 +86,9 @@ defmodule PlacesAlloverseComWeb.Router do
     pipe_through [:browser]
 
     delete "/users/logout", SessionController, :delete
-    # get "/users/confirm", UserConfirmationController, :new
-    # post "/users/confirm", UserConfirmationController, :create
-    # get "/users/confirm/:token", UserConfirmationController, :confirm
+    get "/users/confirm", UserConfirmationController, :new
+    post "/users/confirm", UserConfirmationController, :create
+    get "/users/confirm/:token", UserConfirmationController, :confirm
   end
 
   # Other scopes may use custom stacks.
