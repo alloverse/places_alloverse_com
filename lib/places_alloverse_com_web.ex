@@ -41,7 +41,6 @@ defmodule PlacesAlloverseComWeb do
 
       import PlacesAlloverseComWeb.ErrorHelpers
       import PlacesAlloverseComWeb.Gettext
-      import PlacesAlloverseComWeb.Helpers.Auth
       alias PlacesAlloverseComWeb.Router.Helpers, as: Routes
     end
   end

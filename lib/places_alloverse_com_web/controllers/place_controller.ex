@@ -12,7 +12,7 @@ defmodule PlacesAlloverseComWeb.PlaceController do
     public_places = Places.list_public_places()
 
     my_places = case Map.fetch(conn.assigns, :current_user ) do
-      :error -> []
+      {:ok, nil} -> []
       {:ok, current_user} -> Places.list_my_places(current_user)
     end
 

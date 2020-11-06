@@ -29,11 +29,11 @@
 
           <div class="header__buttons">
           
-          <%= if signed_in?(@conn) do %>
+          <%= if @current_user do %>
           <div class="dropdown-container">
             <a class="button image">
               <%# <img src="<%= Routes.static_path(@conn, "/images/user-picture.jpg") " /> %>
-              <%= get_user_name(@conn) %>
+              <%= @current_user.name %>
             </a>
             <div class="dropdown-content">
               <a href="#">Settings (TBD)</a>

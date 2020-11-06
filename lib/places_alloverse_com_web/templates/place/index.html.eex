@@ -1,4 +1,4 @@
-  <%= if signed_in?(@conn) do %>
+  <%= if @current_user do %>
   <div class="card message-box">
     <h3>Welcome to Alloverse Places!</h3>
     <p>
@@ -59,7 +59,7 @@
 
       
 
-     <%= if signed_in?(@conn) do %>
+     <%= if @current_user do %>
       <div class="room-list__title">
         My Places
       </div>

@@ -6,7 +6,7 @@ defmodule PlacesAlloverseCom.Accounts do
   import Ecto.Query, warn: false
   alias PlacesAlloverseCom.Repo
 
-  alias PlacesAlloverseCom.Accounts.{User, Credential}
+  alias PlacesAlloverseCom.Accounts.{User, Credential, UserToken}
 
   @doc """
   Returns the list of users.
@@ -59,6 +59,13 @@ defmodule PlacesAlloverseCom.Accounts do
     %User{}
     |> User.changeset(attrs)
     |> Ecto.Changeset.cast_assoc(:credential, with: &Credential.changeset/2)
+    |> Repo.insert()
+  end
+
+  def register_user(attrs) do
+    %User{}
+    |> User.changeset(attrs)
+    |> Ecto.Changeset.cast_assoc(:credential, with: &Credential.registration_changeset/2)
     |> Repo.insert()
   end
 
@@ -219,4 +226,66 @@ defmodule PlacesAlloverseCom.Accounts do
   def change_credential(%Credential{} = credential) do
     Credential.changeset(credential, %{})
   end
+
+  def get_user_by_email(email) when is_binary(email) do
+    Repo.get_by(User, email: email)
+  end
+
+  def get_user_by_email_and_password(email, password) do
+    # when is_binary(email) and is_binary(password) do
+      user = Repo.get_by(Credential, email: email)
+      IO.puts "get_user_by_email_and_password"
+      IO.inspect user
+      if Credential.valid_password?(user, password), do: user
+  end
+
+
+  ## Session
+
+  @doc """
+  Generates a session token.
+  """
+  def generate_user_session_token(user) do
+    {token, user_token} = UserToken.build_session_token(user)
+    Repo.insert!(user_token)
+    token
+  end
+
+   @doc """
+  Gets the user with the given signed token.
+  """
+  def get_user_by_session_token(token) do
+    {:ok, query} = UserToken.verify_session_token_query(token)
+    Repo.one(query)
+  end
+
+  @doc """
+  Deletes the signed token with the given context.
+  """
+  def delete_user_session_token(token) do
+    Repo.delete_all(UserToken.token_and_context_query(token, "session"))
+    :ok
+  end
+
+  ## Confirmation
+
+  @doc """
+  Delivers the confirmation e-mail instructions to the given user.
+  ## Examples
+      iex> deliver_user_confirmation_instructions(user, &Routes.user_confirmation_url(conn, :confirm, &1))
+      {:ok, %{to: ..., body: ...}}
+      iex> deliver_user_confirmation_instructions(confirmed_user, &Routes.user_confirmation_url(conn, :confirm, &1))
+      {:error, :already_confirmed}
+  """
+  # def deliver_user_confirmation_instructions(%User{} = user, confirmation_url_fun)
+  #     when is_function(confirmation_url_fun, 1) do
+  #   if user.confirmed_at do
+  #     {:error, :already_confirmed}
+  #   else
+  #     {encoded_token, user_token} = UserToken.build_email_token(user, "confirm")
+  #     Repo.insert!(user_token)
+  #     UserNotifier.deliver_confirmation_instructions(user, confirmation_url_fun.(encoded_token))
+  #   end
+  # end
+
 end

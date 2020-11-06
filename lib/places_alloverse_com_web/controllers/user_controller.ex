@@ -3,6 +3,7 @@ defmodule PlacesAlloverseComWeb.UserController do
 
   alias PlacesAlloverseCom.Accounts
   alias PlacesAlloverseCom.Accounts.User
+  alias PlacesAlloverseComWeb.UserAuth
 
   def index(conn, _params) do
     users = Accounts.list_users()
@@ -15,16 +16,21 @@ defmodule PlacesAlloverseComWeb.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    case Accounts.create_user(user_params) do
+    case Accounts.register_user(user_params) do
       {:ok, user} ->
+        # {:ok, _} =
+        #   Accounts.deliver_user_confirmation_instructions(
+        #     user,
+        #     &Routes.user_confirmation_url(conn, :confirm, &1)
+        #   )
+
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: Routes.user_path(conn, :show, user))
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        |> UserAuth.login_user(user)
+        {:error, %Ecto.Changeset{} = changeset} ->
+          render(conn, "new.html", changeset: changeset)
+      end
     end
-  end
 
   def show(conn, %{"id" => id}) do
     user = Accounts.get_user!(id)
