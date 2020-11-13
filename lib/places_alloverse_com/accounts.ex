@@ -293,18 +293,19 @@ defmodule PlacesAlloverseCom.Accounts do
   """
   def confirm_user(token) do
     with {:ok, query} <- UserToken.verify_email_token_query(token, "confirm"),
-        %Credential{} = credential <- Repo.one(query),
-        {:ok, %{credential: credential}} <- Repo.transaction(confirm_user_multi(credential)) do
+        %User{} = user0 <- Repo.one(query),
+        %User{} = user <- Repo.preload(user0, :credential),
+        {:ok, %{credential: credential}} <- Repo.transaction(confirm_user_multi(user)) do
       {:ok, credential}
     else
       _ -> :error
     end
   end
 
-  defp confirm_user_multi(credential) do
+  defp confirm_user_multi(user) do
     Ecto.Multi.new()
-    |> Ecto.Multi.update(:credential, Credential.confirm_changeset(credential))
-    |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(credential.user, ["confirm"]))
+    |> Ecto.Multi.update(:credential, Credential.confirm_changeset(user.credential))
+    |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, ["confirm"]))
   end
 
 
