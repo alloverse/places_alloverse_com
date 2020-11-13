@@ -228,7 +228,7 @@ defmodule PlacesAlloverseCom.Accounts do
   end
 
   def get_user_by_email(email) when is_binary(email) do
-    Repo.get_by(User, email: email)
+    Repo.get_by(Credential, email: email)
   end
 
   def get_user_by_email_and_password(email, password) when is_binary(email) and is_binary(password) do
@@ -293,9 +293,9 @@ defmodule PlacesAlloverseCom.Accounts do
   """
   def confirm_user(token) do
     with {:ok, query} <- UserToken.verify_email_token_query(token, "confirm"),
-        %User{} = user <- Repo.one(query),
-        {:ok, %{user: user}} <- Repo.transaction(confirm_user_multi(user.credential)) do
-      {:ok, user}
+        %Credential{} = credential <- Repo.one(query),
+        {:ok, %{credential: credential}} <- Repo.transaction(confirm_user_multi(credential)) do
+      {:ok, credential}
     else
       _ -> :error
     end
