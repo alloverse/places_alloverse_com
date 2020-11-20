@@ -36,7 +36,7 @@
               <%= @current_user.name %>
             </a>
             <div class="dropdown-content">
-              <a href="#">Settings (TBD)</a>
+              <%= link "Settings", to: Routes.user_settings_path(@conn, :edit) %>
               <%= form_for @conn, Routes.session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
                 <%# <div class="button"> %>
                   <%= submit "Log Out", [class: "button"] %>

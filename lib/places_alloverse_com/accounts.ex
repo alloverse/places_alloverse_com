@@ -264,6 +264,42 @@ defmodule PlacesAlloverseCom.Accounts do
     :ok
   end
 
+  @doc """
+  Returns an `%Ecto.Changeset{}` for changing the user password.
+  ## Examples
+      iex> change_user_password(user)
+      %Ecto.Changeset{data: %User{}}
+  """
+  def change_user_password(user, attrs \\ %{}) do
+    user1 = Repo.preload(user, :credential)
+    Credential.password_changeset(user1.credential, attrs)
+  end
+
+  @doc """
+  Updates the user password.
+  ## Examples
+      iex> update_user_password(user, "valid password", %{password: ...})
+      {:ok, %User{}}
+      iex> update_user_password(user, "invalid password", %{password: ...})
+      {:error, %Ecto.Changeset{}}
+  """
+  def update_user_password(user1, password, credential_attrs) do
+    user = Repo.preload(user1, :credential)
+    changeset =
+      user.credential
+      |> Credential.password_changeset(credential_attrs)
+      |> Credential.validate_current_password(password)
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:credential, changeset)
+    |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, :all))
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{credential: credential}} -> {:ok, credential}
+      {:error, :credential, changeset, _} -> {:error, changeset}
+    end
+  end
+
   ## Confirmation
 
   @doc """

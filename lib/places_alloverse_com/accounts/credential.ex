@@ -68,25 +68,25 @@ defmodule PlacesAlloverseCom.Accounts.Credential do
     A user changeset for changing the e-mail.
     It requires the e-mail to change otherwise an error is added.
     """
-  # def email_changeset(user, attrs) do
-  #   user
-  #   |> cast(attrs, [:email])
-  #   |> validate_email()m
-  #   |> case do
-  #     %{changes: %{email: _}} = changeset -> changeset
-  #     %{} = changeset -> add_error(changeset, :email, "did not change")
-  #   end
-  # end
+  def email_changeset(credential, attrs) do
+    credential
+    |> cast(attrs, [:email])
+    |> validate_email()
+    |> case do
+      %{changes: %{email: _}} = changeset -> changeset
+      %{} = changeset -> add_error(changeset, :email, "did not change")
+    end
+  end
 
    @doc """
   A user changeset for changing the password.
   """
-  # def password_changeset(user, attrs) do
-  #   user
-  #   |> cast(attrs, [:password])
-  #   |> validate_confirmation(:password, message: "does not match password")
-  #   |> validate_password()
-  # end
+  def password_changeset(credential, attrs) do
+    credential
+    |> cast(attrs, [:password])
+    |> validate_confirmation(:password, message: "does not match password")
+    |> validate_password()
+  end
 
   @doc """
   Confirms the account by setting `confirmed_at`.
