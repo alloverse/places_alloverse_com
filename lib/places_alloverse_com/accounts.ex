@@ -227,8 +227,13 @@ defmodule PlacesAlloverseCom.Accounts do
     Credential.changeset(credential, %{})
   end
 
-  def get_user_by_email(email) when is_binary(email) do
+  def get_credential_by_email(email) when is_binary(email) do
     Repo.get_by(Credential, email: email)
+  end
+
+  def get_user_by_email(email) when is_binary(email) do
+    credential = Repo.get_by(Credential, email: email) |> Repo.preload(:user)
+    user = credential.user
   end
 
   def get_user_by_email_and_password(email, password) when is_binary(email) and is_binary(password) do
@@ -270,9 +275,9 @@ defmodule PlacesAlloverseCom.Accounts do
       iex> change_user_password(user)
       %Ecto.Changeset{data: %User{}}
   """
-  def change_user_password(user, attrs \\ %{}) do
-    user1 = Repo.preload(user, :credential)
-    Credential.password_changeset(user1.credential, attrs)
+  def change_user_password(user1, attrs \\ %{}) do
+    user = Repo.preload(user1, :credential)
+    Credential.password_changeset(user.credential, attrs)
   end
 
   @doc """
@@ -344,5 +349,57 @@ defmodule PlacesAlloverseCom.Accounts do
     |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, ["confirm"]))
   end
 
+  ## Reset password
+
+  @doc """
+  Delivers the reset password e-mail to the given user.
+  ## Examples
+      iex> deliver_user_reset_password_instructions(user, &Routes.user_reset_password_url(conn, :edit, &1))
+      {:ok, %{to: ..., body: ...}}
+  """
+  def deliver_user_reset_password_instructions(%User{} = user, reset_password_url_fun)
+      when is_function(reset_password_url_fun, 1) do
+    user1 = Repo.preload(user, :credential)
+    {encoded_token, user_token} = UserToken.build_email_token(user, "reset_password", user1.credential.email)
+    Repo.insert!(user_token)
+    UserNotifier.deliver_reset_password_instructions(user1, reset_password_url_fun.(encoded_token))
+  end
+
+  @doc """
+  Gets the user by reset password token.
+  ## Examples
+      iex> get_user_by_reset_password_token("validtoken")
+      %User{}
+      iex> get_user_by_reset_password_token("invalidtoken")
+      nil
+  """
+  def get_user_by_reset_password_token(token) do
+    with {:ok, query} <- UserToken.verify_email_token_query(token, "reset_password"),
+         %User{} = user <- Repo.one(query) do
+      user
+    else
+      _ -> nil
+    end
+  end
+
+  @doc """
+  Resets the user password.
+  ## Examples
+      iex> reset_user_password(user, %{password: "new long password", password_confirmation: "new long password"})
+      {:ok, %User{}}
+      iex> reset_user_password(user, %{password: "valid", password_confirmation: "not the same"})
+      {:error, %Ecto.Changeset{}}
+  """
+  def reset_user_password(user, attrs) do
+    user1 = Repo.preload(user, :credential)
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:user, Credential.password_changeset(user1.credential, attrs))
+    |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, :all))
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{user: user}} -> {:ok, user}
+      {:error, :user, changeset, _} -> {:error, changeset}
+    end
+  end
 
 end

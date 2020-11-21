@@ -9,15 +9,13 @@
           
           <%= text_input f, :email, placeholder: "Email" %>
           
-          <%= password_input f, :password, placeholder: "Password can be blank" %>
+          <%= password_input f, :password, placeholder: "Password" %>
           
           <%= submit "Login", [class: "button full-width"] %>
           
         <% end %>
 
-        <%= form_for @conn, Routes.session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
-          <%= submit "logout", [class: "button full-width"] %>
-        <% end %>
+        <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
 
       </div>
     </div>

@@ -67,10 +67,10 @@ defmodule PlacesAlloverseComWeb.Router do
     # post "/users/register", UserRegistrationController, :create
     get "/users/login", SessionController, :new
     post "/users/login", SessionController, :create
-    # get "/users/reset_password", UserResetPasswordController, :new
-    # post "/users/reset_password", UserResetPasswordController, :create
-    # get "/users/reset_password/:token", UserResetPasswordController, :edit
-    # put "/users/reset_password/:token", UserResetPasswordController, :update
+    get "/users/reset_password", UserResetPasswordController, :new
+    post "/users/reset_password", UserResetPasswordController, :create
+    get "/users/reset_password/:token", UserResetPasswordController, :edit
+    put "/users/reset_password/:token", UserResetPasswordController, :update
   end
 
   scope "/", PlacesAlloverseComWeb do
