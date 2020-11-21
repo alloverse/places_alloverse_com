@@ -10,14 +10,16 @@ defmodule PlacesAlloverseComWeb.UserSettingsController do
     render(conn, "edit.html")
   end
 
-  def update_email(conn, %{"current_password" => password, "user" => user_params}) do
+  def update_email(conn, %{"current_password" => password, "credential" => credential_params}) do
     user = conn.assigns.current_user
+    user_with_credential = Accounts.get_user!(user.id)
 
-    case Accounts.apply_user_email(user, password, user_params) do
-      {:ok, applied_user} ->
+    case Accounts.apply_user_email(user, password, credential_params) do
+      {:ok, applied_credential} ->
         Accounts.deliver_update_email_instructions(
-          applied_user,
-          user.email,
+          user,
+          user_with_credential.credential.email, #old email
+          applied_credential.email, #new email
           &Routes.user_settings_url(conn, :confirm_email, &1)
         )
 
@@ -68,4 +70,4 @@ defmodule PlacesAlloverseComWeb.UserSettingsController do
       |> assign(:email_changeset, Accounts.change_user_email(user))
       |> assign(:password_changeset, Accounts.change_user_password(user))
     end
-  end
+end

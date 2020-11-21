@@ -52,8 +52,8 @@ defmodule PlacesAlloverseCom.Accounts.UserToken do
   The token is valid for a week as long as users don't change
   their email.
   """
-  def build_email_token(user, context, email) do
-    build_hashed_token(user, context, email)
+  def build_email_token(user, context, new_email) do
+    build_hashed_token(user, context, new_email)
   end
 
   defp build_hashed_token(user, context, sent_to) do

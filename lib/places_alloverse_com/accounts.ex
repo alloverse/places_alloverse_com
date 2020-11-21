@@ -269,6 +269,79 @@ defmodule PlacesAlloverseCom.Accounts do
     :ok
   end
 
+  ## Settings
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for changing the user e-mail.
+  ## Examples
+      iex> change_user_email(user)
+      %Ecto.Changeset{data: %User{}}
+  """
+  def change_user_email(user, attrs \\ %{}) do
+    user1 = Repo.preload(user, :credential)
+    Credential.email_changeset(user1.credential, attrs)
+  end
+
+  @doc """
+  Emulates that the e-mail will change without actually changing
+  it in the database.
+  ## Examples
+      iex> apply_user_email(user, "valid password", %{email: ...})
+      {:ok, %User{}}
+      iex> apply_user_email(user, "invalid password", %{email: ...})
+      {:error, %Ecto.Changeset{}}
+  """
+  def apply_user_email(user, password, credential_attrs) do
+    user1 = Repo.preload(user, :credential)
+    user1.credential
+    |> Credential.email_changeset(credential_attrs)
+    |> Credential.validate_current_password(password)
+    |> Ecto.Changeset.apply_action(:update)
+  end
+
+  @doc """
+  Updates the user e-mail in token.
+  If the token matches, the user email is updated and the token is deleted.
+  The confirmed_at date is also updated to the current time.
+  """
+  def update_user_email(user, token) do
+    user1 = Repo.preload(user, :credential)
+    context = "change:#{user1.credential.email}"
+
+    with {:ok, query} <- UserToken.verify_change_email_token_query(token, context),
+         %UserToken{sent_to: email} <- Repo.one(query),
+         {:ok, _} <- Repo.transaction(user_email_multi(user1, email, context)) do
+      :ok
+    else
+      error ->
+        IO.puts("error update_user_email")
+        IO.inspect(error)
+        :error
+    end
+  end
+
+  defp user_email_multi(user, email, context) do
+    changeset = user.credential |> Credential.email_changeset(%{email: email}) |> Credential.confirm_changeset()
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:credential, changeset)
+    |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, [context]))
+  end
+
+  @doc """
+  Delivers the update e-mail instructions to the given user.
+  ## Examples
+      iex> deliver_update_email_instructions(user, current_email, &Routes.user_update_email_url(conn, :edit, &1))
+      {:ok, %{to: ..., body: ...}}
+  """
+  def deliver_update_email_instructions(%User{} = user, current_email, new_email, update_email_url_fun)
+      when is_function(update_email_url_fun, 1) do
+    {encoded_token, user_token} = UserToken.build_email_token(user, "change:#{current_email}", new_email)
+
+    Repo.insert!(user_token)
+    UserNotifier.deliver_update_email_instructions(new_email, update_email_url_fun.(encoded_token))
+  end
+
   @doc """
   Returns an `%Ecto.Changeset{}` for changing the user password.
   ## Examples
