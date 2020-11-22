@@ -1,15 +1,26 @@
-<h1>Forgot your password?</h1>
+<div class="card">
+  <div class="card-column-container">
+    <div class="card-column-container__column-left">
+      <div class="column-content">
 
-<%= form_for :user, Routes.user_reset_password_path(@conn, :create), fn f -> %>
-  <%= label f, :email %>
-  <%= text_input f, :email, required: true %>
+        <h2>Forgot your password?</h2>
+        
+        <%= form_for :user, Routes.user_reset_password_path(@conn, :create), [method: :post, as: :user, class: "form-container"], fn f -> %>
+          
+          <%= text_input f, :email, placeholder: "Email", required: true %>
+          
+          
+          <%= submit "Send instructions to reset password", [class: "button full-width"] %>
+          
+        <% end %>
 
-  <div>
-    <%= submit "Send instructions to reset password" %>
+        <p>
+          <%= link "Register", to: Routes.user_path(@conn, :create) %> |
+          <%= link "Login", to: Routes.session_path(@conn, :new) %>
+         </p>
+
+      </div>
+    </div>
+    <div class="card-column-container__column-right"></div>
   </div>
-<% end %>
-
-<p>
-  <%= link "Register", to: Routes.user_path(@conn, :create) %> |
-  <%= link "Login", to: Routes.session_path(@conn, :new) %>
-</p>
+</div>
