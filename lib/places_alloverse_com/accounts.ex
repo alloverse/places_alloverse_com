@@ -394,7 +394,7 @@ defmodule PlacesAlloverseCom.Accounts do
     if user.credential.confirmed_at do
       {:error, :already_confirmed}
     else
-      {encoded_token, user_token} = UserToken.build_email_token(user, "confirm")
+      {encoded_token, user_token} = UserToken.build_email_token(user, "confirm", user.credential.email)
       Repo.insert!(user_token)
       UserNotifier.deliver_confirmation_instructions(user, confirmation_url_fun.(encoded_token))
     end
