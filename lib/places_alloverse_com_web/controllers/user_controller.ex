@@ -65,14 +65,4 @@ defmodule PlacesAlloverseComWeb.UserController do
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: Routes.user_path(conn, :index))
   end
-
-  # Login, logout forgot password?
-
-  # def login(conn, _params) do
-  #   render(conn, "sessions.new.html")
-  # end
-
-  # def forgot_password(conn, _params) do
-  #   render(conn, "forgot.html")
-  # end
 end

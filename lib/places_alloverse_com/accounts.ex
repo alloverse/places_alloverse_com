@@ -55,12 +55,6 @@ defmodule PlacesAlloverseCom.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  # def create_user(attrs \\ %{}) do
-  #   %User{}
-  #   |> User.changeset(attrs)
-  #   |> Ecto.Changeset.cast_assoc(:credential, with: &Credential.changeset/2)
-  #   |> Repo.insert()
-  # end
 
   def register_user(attrs) do
     %User{}
