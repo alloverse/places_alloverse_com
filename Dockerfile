@@ -38,4 +38,4 @@ RUN mix compile && \
     cd assets && \
     npm run deploy
 
-CMD mix phx.server
+CMD mix ecto.migrate && mix phx.server
